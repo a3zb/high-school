@@ -1,0 +1,449 @@
+{
+    "years": [
+        {
+            "id": "1as",
+            "title": {
+                "ar": "السنة الأولى ثانوي",
+                "fr": "1ère Année Secondaire",
+                "en": "1st Year Secondary"
+            },
+            "streams": [
+                {
+                    "id": "trunk-common-sciences",
+                    "title": {
+                        "ar": "جذع مشترك علوم وتكنولوجيا",
+                        "fr": "Tronc Commun Sciences et Technologie",
+                        "en": "Common Trunk Sciences and Technology"
+                    },
+                    "subjects": [
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "fr": "Mathématiques",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "فيزياء",
+                                "fr": "Physique",
+                                "en": "Physics"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم الطبيعة والحياة",
+                                "fr": "Sciences de la Nature",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "fr": "Langue Arabe",
+                                "en": "Arabic Language"
+                            }
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "fr": "Sciences Islamiques",
+                                "en": "Islamic Sciences"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "trunk-common-arts",
+                    "title": {
+                        "ar": "جذع مشترك آداب",
+                        "fr": "Tronc Commun Lettres",
+                        "en": "Common Trunk Arts"
+                    },
+                    "subjects": [
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "fr": "Langue Arabe",
+                                "en": "Arabic Language"
+                            }
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "fr": "Histoire-Géo",
+                                "en": "History & Geography"
+                            }
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "fr": "Sciences Islamiques",
+                                "en": "Islamic Sciences"
+                            }
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "fr": "Français",
+                                "en": "French"
+                            }
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "fr": "Anglais",
+                                "en": "English"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "2as",
+            "title": {
+                "ar": "السنة الثانية ثانوي",
+                "fr": "2ème Année Secondaire",
+                "en": "2nd Year Secondary"
+            },
+            "streams": [
+                {
+                    "id": "science",
+                    "title": {
+                        "ar": "علوم تجريبية",
+                        "fr": "Sciences Expérimentales",
+                        "en": "Experimental Sciences"
+                    },
+                    "subjects": [
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "fr": "Mathématiques",
+                                "en": "Mathematics"
+                            }
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "فيزياء",
+                                "fr": "Physique",
+                                "en": "Physics"
+                            }
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم الطبيعة والحياة",
+                                "fr": "Sciences de la Nature",
+                                "en": "Natural Sciences"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "math",
+                    "title": {
+                        "ar": "رياضيات",
+                        "fr": "Mathématiques",
+                        "en": "Mathematics"
+                    },
+                    "subjects": [
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "fr": "Mathématiques",
+                                "en": "Mathematics"
+                            }
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "فيزياء",
+                                "fr": "Physique",
+                                "en": "Physics"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "manage",
+                    "title": {
+                        "ar": "تسيير واقتصاد",
+                        "fr": "Gestion et Économie",
+                        "en": "Management and Economy"
+                    },
+                    "subjects": [
+                        {
+                            "id": "accounting",
+                            "title": {
+                                "ar": "محاسبة",
+                                "fr": "Comptabilité",
+                                "en": "Accounting"
+                            }
+                        },
+                        {
+                            "id": "economy",
+                            "title": {
+                                "ar": "اقتصاد",
+                                "fr": "Économie",
+                                "en": "Economy"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "tech-math",
+                    "title": {
+                        "ar": "تقني رياضي",
+                        "fr": "Technique Mathématique",
+                        "en": "Technical Mathematical"
+                    },
+                    "subjects": [
+                        {
+                            "id": "civil-eng",
+                            "title": {
+                                "ar": "هندسة مدنية",
+                                "fr": "Génie Civil",
+                                "en": "Civil Engineering"
+                            }
+                        },
+                        {
+                            "id": "mech-eng",
+                            "title": {
+                                "ar": "هندسة ميكانيكية",
+                                "fr": "Génie Mécanique",
+                                "en": "Mechanical Engineering"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "languages",
+                    "title": {
+                        "ar": "لغات أجنبية",
+                        "fr": "Langues Étrangères",
+                        "en": "Foreign Languages"
+                    },
+                    "subjects": [
+                        {
+                            "id": "spanish",
+                            "title": {
+                                "ar": "إسبانية",
+                                "fr": "Espagnol",
+                                "en": "Spanish"
+                            }
+                        },
+                        {
+                            "id": "german",
+                            "title": {
+                                "ar": "ألمانية",
+                                "fr": "Allemand",
+                                "en": "German"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "lit-philo",
+                    "title": {
+                        "ar": "آداب وفلسفة",
+                        "fr": "Lettres et Philosophie",
+                        "en": "Literature and Philosophy"
+                    },
+                    "subjects": [
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "fr": "Philosophie",
+                                "en": "Philosophy"
+                            }
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "fr": "Langue Arabe",
+                                "en": "Arabic Language"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "3as",
+            "title": {
+                "ar": "السنة الثالثة ثانوي",
+                "fr": "3ème Année Secondaire",
+                "en": "3rd Year Secondary"
+            },
+            "streams": [
+                {
+                    "id": "science",
+                    "title": {
+                        "ar": "علوم تجريبية",
+                        "fr": "Sciences Expérimentales",
+                        "en": "Experimental Sciences"
+                    },
+                    "subjects": [
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "fr": "Mathématiques",
+                                "en": "Mathematics"
+                            }
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "فيزياء",
+                                "fr": "Physique",
+                                "en": "Physics"
+                            }
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم الطبيعة والحياة",
+                                "fr": "Sciences de la Nature",
+                                "en": "Natural Sciences"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "math",
+                    "title": {
+                        "ar": "رياضيات",
+                        "fr": "Mathématiques",
+                        "en": "Mathematics"
+                    },
+                    "subjects": [
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "fr": "Mathématiques",
+                                "en": "Mathematics"
+                            }
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "فيزياء",
+                                "fr": "Physique",
+                                "en": "Physics"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "manage",
+                    "title": {
+                        "ar": "تسيير واقتصاد",
+                        "fr": "Gestion et Économie",
+                        "en": "Management and Economy"
+                    },
+                    "subjects": [
+                        {
+                            "id": "accounting",
+                            "title": {
+                                "ar": "محاسبة",
+                                "fr": "Comptabilité",
+                                "en": "Accounting"
+                            }
+                        },
+                        {
+                            "id": "management",
+                            "title": {
+                                "ar": "مناجمنت",
+                                "fr": "Management",
+                                "en": "Management"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "tech-math",
+                    "title": {
+                        "ar": "تقني رياضي",
+                        "fr": "Technique Mathématique",
+                        "en": "Technical Mathematical"
+                    },
+                    "subjects": [
+                        {
+                            "id": "elec-eng",
+                            "title": {
+                                "ar": "هندسة طرائق",
+                                "fr": "Génie des Procédés",
+                                "en": "Process Engineering"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "languages",
+                    "title": {
+                        "ar": "لغات أجنبية",
+                        "fr": "Langues Étrangères",
+                        "en": "Foreign Languages"
+                    },
+                    "subjects": [
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "فرنسية",
+                                "fr": "Français",
+                                "en": "French"
+                            }
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "إنجليزية",
+                                "fr": "Anglais",
+                                "en": "English"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "lit-philo",
+                    "title": {
+                        "ar": "آداب وفلسفة",
+                        "fr": "Lettres et Philosophie",
+                        "en": "Literature and Philosophy"
+                    },
+                    "subjects": [
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "fr": "Philosophie",
+                                "en": "Philosophy"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

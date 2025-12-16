@@ -1,0 +1,28 @@
+{
+    "codes": {
+        "math-teacher-code": {
+            "role": "teacher",
+            "subjectIds": [
+                "math"
+            ]
+        },
+        "science-teacher-code": {
+            "role": "teacher",
+            "subjectIds": [
+                "science",
+                "physics"
+            ]
+        },
+        "humanities-teacher-code": {
+            "role": "teacher",
+            "subjectIds": [
+                "arabic",
+                "philosophy",
+                "history-geo"
+            ]
+        },
+        "mod-super-secret": {
+            "role": "moderator"
+        }
+    }
+}

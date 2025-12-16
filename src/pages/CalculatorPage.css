@@ -1,0 +1,123 @@
+.calculator-page {
+    padding-bottom: 4rem;
+}
+
+.calculator-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.calc-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-lg);
+}
+
+.subjects-grid {
+    display: grid;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.subject-input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: var(--color-background);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.sub-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.sub-coeff {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    background: var(--color-text-muted);
+    color: var(--color-surface);
+    border-radius: 1rem;
+}
+
+.subject-input-row input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-weight: bold;
+}
+
+.calculate-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.result-box {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    text-align: center;
+    animation: slideIn 0.3s ease-out;
+}
+
+.result-box.pass {
+    background: #d1fae5;
+    color: #064e3b;
+    border: 2px solid #10b981;
+}
+
+.result-box.fail {
+    background: #fee2e2;
+    color: #7f1d1d;
+    border: 2px solid #ef4444;
+}
+
+.average-display {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: var(--spacing-sm) 0;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .calc-controls {
+        grid-template-columns: 1fr;
+    }
+}

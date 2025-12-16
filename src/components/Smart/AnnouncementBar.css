@@ -1,0 +1,36 @@
+.announcement-bar {
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.announcement-bar.type-info {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.announcement-bar.type-warning {
+    background-color: #f59e0b;
+    color: black;
+}
+
+.announcement-bar.type-success {
+    background-color: #10b981;
+    color: white;
+}
+
+.announcement-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.announcement-icon {
+    font-size: 1.1rem;
+}
+
+/* Optional animation for text change could be added here */
