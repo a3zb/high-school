@@ -1,113 +1,190 @@
-.calculator-page {
-    padding-bottom: 4rem;
+.calculator-page-dz {
+    padding-bottom: 6rem;
 }
 
-.calculator-card {
-    background: var(--color-surface);
+.calc-hero-dz {
+    margin-bottom: 2rem;
+    padding: 2.5rem 1.5rem;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border);
-    padding: var(--spacing-lg);
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background: var(--mesh-gradient);
+    color: white;
+    box-shadow: var(--shadow-xl);
 }
 
-.calc-controls {
+.calc-hero-dz h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+}
+
+.setup-grid-dz {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: var(--spacing-lg);
+    gap: 2rem;
+    padding: 1rem;
 }
 
-.subjects-grid {
-    display: grid;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
+.calc-table-container {
+    margin-top: 2rem;
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.subject-input-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-sm);
-    background: var(--color-background);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-}
-
-.sub-info {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
-.sub-coeff {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-    background: var(--color-text-muted);
-    color: var(--color-surface);
-    border-radius: 1rem;
-}
-
-.subject-input-row input {
-    width: 80px;
-    padding: 0.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    text-align: center;
-    font-weight: bold;
-}
-
-.calculate-btn {
+.dz-calc-table {
     width: 100%;
-    padding: var(--spacing-md);
-    background: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-md);
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
+    min-width: 800px;
 }
 
-.calculate-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+.dz-calc-table th {
+    padding: 1rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
 }
 
-.result-box {
-    margin-top: var(--spacing-lg);
-    padding: var(--spacing-lg);
+.dz-calc-table td {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.75rem;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.dz-calc-table td:first-child {
+    border-left: 1px solid var(--glass-border);
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    text-align: right;
+    width: 250px;
+}
+
+.dz-calc-table td:last-child {
+    border-right: 1px solid var(--glass-border);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.sub-name-cell {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.dz-calc-table input {
+    width: 80px;
+    padding: 0.75rem;
+    border: 2px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: var(--radius-md);
     text-align: center;
-    animation: slideIn 0.3s ease-out;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    transition: all 0.3s;
 }
 
-.result-box.pass {
-    background: #d1fae5;
-    color: #064e3b;
-    border: 2px solid #10b981;
+.dz-calc-table input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    background: rgba(59, 130, 246, 0.05);
 }
 
-.result-box.fail {
-    background: #fee2e2;
-    color: #7f1d1d;
-    border: 2px solid #ef4444;
+.coeff-input {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+    color: var(--color-accent) !important;
 }
 
-.average-display {
-    font-size: 3rem;
+/* Hide number input spinners */
+.dz-calc-table input::-webkit-outer-spin-button,
+.dz-calc-table input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.dz-calc-table input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.calc-actions-footer {
+    padding: 3rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.db-outline-btn {
+    background: transparent;
+    border: 2px solid var(--glass-border);
+    color: var(--color-text);
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.db-outline-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-secondary);
+}
+
+.dz-result-card {
+    margin-top: 4rem;
+    padding: 4rem;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    animation: slideUpFade 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.avg-main {
+    font-size: 5rem;
+    font-weight: 950;
+    line-height: 1;
+    margin: 1rem 0;
+    letter-spacing: -2px;
+}
+
+@media (max-width: 768px) {
+    .avg-main {
+        font-size: 3.5rem;
+        letter-spacing: -1px;
+    }
+
+    .dz-result-card {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
     font-weight: 800;
-    margin: var(--spacing-sm) 0;
+    font-size: 1.25rem;
 }
 
-@keyframes slideIn {
+.dz-result-card.pass .status-pill {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.dz-result-card.fail .status-pill {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+@keyframes slideUpFade {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(30px);
     }
 
     to {
@@ -116,8 +193,93 @@
     }
 }
 
-@media (max-width: 600px) {
-    .calc-controls {
+@media (max-width: 768px) {
+    .setup-grid-dz {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .calc-hero-dz h1 {
+        font-size: 1.5rem;
+    }
+
+    .dz-calc-table {
+        min-width: 600px;
+    }
+
+    .dz-calc-table td:first-child {
+        width: 150px;
+        font-size: 0.9rem;
+    }
+
+    .dz-calc-table input {
+        width: 65px;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .dz-calc-table,
+    .dz-calc-table thead,
+    .dz-calc-table tbody,
+    .dz-calc-table th,
+    .dz-calc-table td,
+    .dz-calc-table tr {
+        display: block;
+    }
+
+    .dz-calc-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .dz-calc-table tr {
+        background: var(--glass-bg);
+        margin-bottom: 1rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--glass-border);
+        padding: 1rem;
+    }
+
+    .dz-calc-table td {
+        border: none !important;
+        position: relative;
+        padding: 0.5rem 0 0.5rem 40% !important;
+        text-align: right !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .dz-calc-table td:first-child {
+        width: 100% !important;
+        border-bottom: 1px solid var(--glass-border) !important;
+        margin-bottom: 0.5rem;
+        padding-left: 0 !important;
+        justify-content: center;
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: var(--radius-md) var(--radius-md) 0 0 !important;
+    }
+
+    .dz-calc-table td::before {
+        content: attr(data-label);
+        font-weight: 800;
+        color: var(--color-text-muted);
+        font-size: 0.8rem;
+    }
+
+    .dz-calc-table input {
+        width: 100px !important;
+    }
+
+    .calc-actions-footer {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .db-primary-btn,
+    .db-outline-btn {
+        width: 100%;
+        margin: 0.5rem 0 !important;
     }
 }

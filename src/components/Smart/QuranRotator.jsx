@@ -3,27 +3,33 @@ import verses from '../../data/quran_verses.json';
 import './SmartComponents.css';
 
 export default function QuranRotator() {
-    const [currentVerse, setCurrentVerse] = useState(verses[0]);
+    const [currentVerse, setCurrentVerse] = useState(null);
 
     useEffect(() => {
-        // Change verse every 10 minutes (600000 ms)
-        // For demo purposes, let's do randomly on mount, then interval
+        const chapters = Object.keys(verses);
+
         const pickRandom = () => {
-            const idx = Math.floor(Math.random() * verses.length);
-            setCurrentVerse(verses[idx]);
+            const randomChapterKey = chapters[Math.floor(Math.random() * chapters.length)];
+            const chapterVerses = verses[randomChapterKey];
+            const verse = chapterVerses[Math.floor(Math.random() * chapterVerses.length)];
+            setCurrentVerse(verse);
         };
 
-        pickRandom(); // Pick one on load
+        if (chapters.length > 0) {
+            pickRandom();
+        }
 
-        const interval = setInterval(pickRandom, 10 * 60 * 1000);
+        const interval = setInterval(pickRandom, 2 * 60 * 1000); // 2 minutes
         return () => clearInterval(interval);
     }, []);
+
+    if (!currentVerse) return null;
 
     return (
         <div className="quran-rotator">
             <span className="quran-icon">☪</span>
             <p className="quran-text">"{currentVerse.text}"</p>
-            <span className="quran-ref">[{currentVerse.surah}: {currentVerse.ayah}]</span>
+            <span className="quran-ref">[{currentVerse.chapter}: {currentVerse.verse}]</span>
         </div>
     );
 }

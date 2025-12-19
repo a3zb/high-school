@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import PrioritySelector from '../components/UI/PrioritySelector';
 import './StudyPlanner.css';
 
 export default function StudyPlannerPage() {
@@ -54,50 +55,67 @@ export default function StudyPlannerPage() {
         return labels[p][currentLang.code] || labels[p].en;
     };
 
+    const isAr = currentLang.code === 'ar';
+
     return (
         <div className="page-container planner-page">
             <div className="container">
-                <header className="planner-header">
-                    <h1>{currentLang.code === 'ar' ? 'مخطط المراجعة' : 'Study Planner'}</h1>
-                    <p>{currentLang.code === 'ar' ? 'نظم وقتك وحقق أهدافك الدراسية' : 'Organize your time and achieve your study goals'}</p>
+                <header className="planner-hero">
+                    <h1>{isAr ? 'مخطط المراجعة القوي' : 'Power Study Planner'}</h1>
+                    <p>{isAr ? 'نظم مهامك اليومية وحطم أهدافك بكفاءة' : 'Organize your daily tasks and crush your goals efficiently'}</p>
                 </header>
 
                 <div className="planner-content">
-                    <form onSubmit={addTask} className="task-form">
-                        <input
-                            type="text"
-                            value={newTask}
-                            onChange={(e) => setNewTask(e.target.value)}
-                            placeholder={currentLang.code === 'ar' ? 'ماذا تريد أن تراجع اليوم؟' : 'What do you want to study today?'}
+                    <form onSubmit={addTask} className="task-form-premium">
+                        <div className="task-input-wrap">
+                            <input
+                                type="text"
+                                value={newTask}
+                                onChange={(e) => setNewTask(e.target.value)}
+                                placeholder={isAr ? 'ما هي خطتك القادمة؟' : 'What is your next plan?'}
+                                required
+                            />
+                        </div>
+                        <PrioritySelector
+                            value={priority}
+                            onChange={setPriority}
+                            currentLang={currentLang}
                         />
-                        <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                            <option value="high">{currentLang.code === 'ar' ? 'أولوية عالية' : 'High Priority'}</option>
-                            <option value="medium">{currentLang.code === 'ar' ? 'أولوية متوسطة' : 'Medium Priority'}</option>
-                            <option value="low">{currentLang.code === 'ar' ? 'أولوية منخفضة' : 'Low Priority'}</option>
-                        </select>
-                        <button type="submit" className="add-task-btn">
-                            {currentLang.code === 'ar' ? 'إضافة' : 'Add'}
+                        <button type="submit" className="add-task-btn-premium">
+                            {isAr ? 'إضافة مهمة' : 'Add Task'}
                         </button>
                     </form>
 
-                    <div className="tasks-list">
-                        {tasks.length === 0 && (
-                            <p className="empty-state">
-                                {currentLang.code === 'ar' ? 'لا توجد مهام حالياً. ابدأ بإضافة خطتك!' : 'No tasks yet. Start adding your plan!'}
-                            </p>
-                        )}
-                        {tasks.map(task => (
-                            <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''} priority-${task.priority}`}>
-                                <div className="task-checkbox" onClick={() => toggleTask(task.id)}>
-                                    {task.completed ? '✓' : ''}
-                                </div>
-                                <div className="task-details">
-                                    <span className="task-text">{task.text}</span>
-                                    <span className="task-priority-badge">{getPriorityLabel(task.priority)}</span>
-                                </div>
-                                <button onClick={() => deleteTask(task.id)} className="delete-task-btn">×</button>
+                    <div className="tasks-grid-premium">
+                        {tasks.length === 0 ? (
+                            <div className="empty-plan-state">
+                                <span className="empty-icon">🗓️</span>
+                                <p>{isAr ? 'لا توجد مهام حالياً. ابدأ ببناء مستقبلك!' : 'No tasks yet. Start building your future!'}</p>
                             </div>
-                        ))}
+                        ) : (
+                            tasks.map((task, index) => (
+                                <div
+                                    key={task.id}
+                                    className={`task-item-premium ${task.completed ? 'completed' : ''}`}
+                                    style={{ animationDelay: `${index * 0.05}s` }}
+                                >
+                                    <div className="task-check-circle" onClick={() => toggleTask(task.id)}>
+                                        ✓
+                                    </div>
+                                    <div className="task-content-wrap">
+                                        <span className="task-title">{task.text}</span>
+                                        <div className="task-meta-premium">
+                                            <span className={`priority-tag priority-${task.priority}`}>
+                                                {getPriorityLabel(task.priority)}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <button onClick={() => deleteTask(task.id)} className="delete-task-btn-premium" title="Delete">
+                                        🗑️
+                                    </button>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </div>

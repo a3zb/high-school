@@ -17,10 +17,17 @@
                     },
                     "subjects": [
                         {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 3
+                        },
+                        {
                             "id": "math",
                             "title": {
                                 "ar": "رياضيات",
-                                "fr": "Mathématiques",
                                 "en": "Mathematics"
                             },
                             "coefficient": 5
@@ -28,35 +35,80 @@
                         {
                             "id": "physics",
                             "title": {
-                                "ar": "فيزياء",
-                                "fr": "Physique",
-                                "en": "Physics"
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
                             },
                             "coefficient": 4
                         },
                         {
                             "id": "science",
                             "title": {
-                                "ar": "علوم الطبيعة والحياة",
-                                "fr": "Sciences de la Nature",
+                                "ar": "علوم طبيعية",
                                 "en": "Natural Sciences"
                             },
                             "coefficient": 4
                         },
                         {
-                            "id": "arabic",
-                            "title": {
-                                "ar": "لغة عربية",
-                                "fr": "Langue Arabe",
-                                "en": "Arabic Language"
-                            }
-                        },
-                        {
                             "id": "islamic",
                             "title": {
                                 "ar": "علوم إسلامية",
-                                "fr": "Sciences Islamiques",
                                 "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "it",
+                            "title": {
+                                "ar": "إعلام آلي",
+                                "en": "Informatics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "tech",
+                            "title": {
+                                "ar": "تكنولوجيا",
+                                "en": "Technology"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
                         }
                     ]
@@ -72,41 +124,88 @@
                         {
                             "id": "arabic",
                             "title": {
-                                "ar": "لغة عربية",
-                                "fr": "Langue Arabe",
-                                "en": "Arabic Language"
-                            }
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 5
                         },
                         {
-                            "id": "history-geo",
+                            "id": "math",
                             "title": {
-                                "ar": "تاريخ وجغرافيا",
-                                "fr": "Histoire-Géo",
-                                "en": "History & Geography"
-                            }
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم طبيعية",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 2
                         },
                         {
                             "id": "islamic",
                             "title": {
                                 "ar": "علوم إسلامية",
-                                "fr": "Sciences Islamiques",
                                 "en": "Islamic Sciences"
-                            }
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 4
                         },
                         {
                             "id": "french",
                             "title": {
                                 "ar": "لغة فرنسية",
-                                "fr": "Français",
-                                "en": "French"
-                            }
+                                "en": "French Language"
+                            },
+                            "coefficient": 3
                         },
                         {
                             "id": "english",
                             "title": {
                                 "ar": "لغة إنجليزية",
-                                "fr": "Anglais",
-                                "en": "English"
+                                "en": "English Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "it",
+                            "title": {
+                                "ar": "إعلام آلي",
+                                "en": "Informatics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
                         }
                     ]
@@ -130,27 +229,90 @@
                     },
                     "subjects": [
                         {
-                            "id": "math",
+                            "id": "science",
                             "title": {
-                                "ar": "رياضيات",
-                                "fr": "Mathématiques",
-                                "en": "Mathematics"
-                            }
+                                "ar": "علوم الطبيعة والحياة",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 6
                         },
                         {
                             "id": "physics",
                             "title": {
-                                "ar": "فيزياء",
-                                "fr": "Physique",
-                                "en": "Physics"
-                            }
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 5
                         },
                         {
-                            "id": "science",
+                            "id": "math",
                             "title": {
-                                "ar": "علوم الطبيعة والحياة",
-                                "fr": "Sciences de la Nature",
-                                "en": "Natural Sciences"
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "it",
+                            "title": {
+                                "ar": "إعلام آلي",
+                                "en": "Informatics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
                         }
                     ]
@@ -167,16 +329,184 @@
                             "id": "math",
                             "title": {
                                 "ar": "رياضيات",
-                                "fr": "Mathématiques",
                                 "en": "Mathematics"
-                            }
+                            },
+                            "coefficient": 7
                         },
                         {
                             "id": "physics",
                             "title": {
-                                "ar": "فيزياء",
-                                "fr": "Physique",
-                                "en": "Physics"
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم الطبيعة والحياة",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "it",
+                            "title": {
+                                "ar": "إعلام آلي",
+                                "en": "Informatics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "tech-math",
+                    "title": {
+                        "ar": "تقني رياضي",
+                        "fr": "Technique Mathématique",
+                        "en": "Technical Mathematical"
+                    },
+                    "subjects": [
+                        {
+                            "id": "tech",
+                            "title": {
+                                "ar": "تكنولوجيا",
+                                "en": "Technology"
+                            },
+                            "coefficient": 7
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "it",
+                            "title": {
+                                "ar": "إعلام آلي",
+                                "en": "Informatics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
                         }
                     ]
@@ -192,69 +522,88 @@
                         {
                             "id": "accounting",
                             "title": {
-                                "ar": "محاسبة",
-                                "fr": "Comptabilité",
+                                "ar": "تسيير محاسبي ومالي",
                                 "en": "Accounting"
-                            }
+                            },
+                            "coefficient": 6
                         },
                         {
                             "id": "economy",
                             "title": {
-                                "ar": "اقتصاد",
-                                "fr": "Économie",
+                                "ar": "اقتصاد ومناجمنت",
                                 "en": "Economy"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "tech-math",
-                    "title": {
-                        "ar": "تقني رياضي",
-                        "fr": "Technique Mathématique",
-                        "en": "Technical Mathematical"
-                    },
-                    "subjects": [
-                        {
-                            "id": "civil-eng",
-                            "title": {
-                                "ar": "هندسة مدنية",
-                                "fr": "Génie Civil",
-                                "en": "Civil Engineering"
-                            }
+                            },
+                            "coefficient": 5
                         },
                         {
-                            "id": "mech-eng",
+                            "id": "math",
                             "title": {
-                                "ar": "هندسة ميكانيكية",
-                                "fr": "Génie Mécanique",
-                                "en": "Mechanical Engineering"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "languages",
-                    "title": {
-                        "ar": "لغات أجنبية",
-                        "fr": "Langues Étrangères",
-                        "en": "Foreign Languages"
-                    },
-                    "subjects": [
-                        {
-                            "id": "spanish",
-                            "title": {
-                                "ar": "إسبانية",
-                                "fr": "Espagnol",
-                                "en": "Spanish"
-                            }
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 5
                         },
                         {
-                            "id": "german",
+                            "id": "law",
                             "title": {
-                                "ar": "ألمانية",
-                                "fr": "Allemand",
-                                "en": "German"
+                                "ar": "قانون",
+                                "en": "Law"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
                         }
                     ]
@@ -268,19 +617,179 @@
                     },
                     "subjects": [
                         {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 5
+                        },
+                        {
                             "id": "philosophy",
                             "title": {
                                 "ar": "فلسفة",
-                                "fr": "Philosophie",
                                 "en": "Philosophy"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم طبيعية",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
+                        }
+                    ]
+                },
+                {
+                    "id": "languages",
+                    "title": {
+                        "ar": "لغات أجنبية",
+                        "fr": "Langues Étrangères",
+                        "en": "Foreign Languages"
+                    },
+                    "subjects": [
+                        {
+                            "id": "language3",
+                            "title": {
+                                "ar": "لغة أجنبية ثالثة",
+                                "en": "Foreign Language 3"
+                            },
+                            "coefficient": 4
                         },
                         {
                             "id": "arabic",
                             "title": {
-                                "ar": "لغة عربية",
-                                "fr": "Langue Arabe",
-                                "en": "Arabic Language"
+                                "ar": "أدب عربي",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "اجتماعيات",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "en": "Philosophy"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
                             }
                         }
                     ]
@@ -304,28 +813,92 @@
                     },
                     "subjects": [
                         {
-                            "id": "math",
+                            "id": "science",
                             "title": {
-                                "ar": "رياضيات",
-                                "fr": "Mathématiques",
-                                "en": "Mathematics"
-                            }
+                                "ar": "علوم الطبيعة والحياة",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 6
                         },
                         {
                             "id": "physics",
                             "title": {
-                                "ar": "فيزياء",
-                                "fr": "Physique",
-                                "en": "Physics"
-                            }
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 5
                         },
                         {
-                            "id": "science",
+                            "id": "math",
                             "title": {
-                                "ar": "علوم الطبيعة والحياة",
-                                "fr": "Sciences de la Nature",
-                                "en": "Natural Sciences"
-                            }
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "en": "Philosophy"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            },
+                            "coefficient": 2
                         }
                     ]
                 },
@@ -341,17 +914,187 @@
                             "id": "math",
                             "title": {
                                 "ar": "رياضيات",
-                                "fr": "Mathématiques",
                                 "en": "Mathematics"
-                            }
+                            },
+                            "coefficient": 7
                         },
                         {
                             "id": "physics",
                             "title": {
-                                "ar": "فيزياء",
-                                "fr": "Physique",
-                                "en": "Physics"
-                            }
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "science",
+                            "title": {
+                                "ar": "علوم الطبيعة والحياة",
+                                "en": "Natural Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "en": "Philosophy"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            },
+                            "coefficient": 2
+                        }
+                    ]
+                },
+                {
+                    "id": "tech-math",
+                    "title": {
+                        "ar": "تقني رياضي",
+                        "fr": "Technique Mathématique",
+                        "en": "Technical Mathematical"
+                    },
+                    "subjects": [
+                        {
+                            "id": "tech",
+                            "title": {
+                                "ar": "تكنولوجيا",
+                                "en": "Technology"
+                            },
+                            "coefficient": 7
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "physics",
+                            "title": {
+                                "ar": "علوم فيزيائية",
+                                "en": "Physical Sciences"
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "en": "Philosophy"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            },
+                            "coefficient": 2
                         }
                     ]
                 },
@@ -366,62 +1109,98 @@
                         {
                             "id": "accounting",
                             "title": {
-                                "ar": "محاسبة",
-                                "fr": "Comptabilité",
+                                "ar": "تسيير محاسبي ومالي",
                                 "en": "Accounting"
-                            }
+                            },
+                            "coefficient": 6
                         },
                         {
-                            "id": "management",
+                            "id": "economy",
                             "title": {
-                                "ar": "مناجمنت",
-                                "fr": "Management",
-                                "en": "Management"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "tech-math",
-                    "title": {
-                        "ar": "تقني رياضي",
-                        "fr": "Technique Mathématique",
-                        "en": "Technical Mathematical"
-                    },
-                    "subjects": [
+                                "ar": "اقتصاد ومناجمنت",
+                                "en": "Economy"
+                            },
+                            "coefficient": 5
+                        },
                         {
-                            "id": "elec-eng",
+                            "id": "law",
                             "title": {
-                                "ar": "هندسة طرائق",
-                                "fr": "Génie des Procédés",
-                                "en": "Process Engineering"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "languages",
-                    "title": {
-                        "ar": "لغات أجنبية",
-                        "fr": "Langues Étrangères",
-                        "en": "Foreign Languages"
-                    },
-                    "subjects": [
+                                "ar": "قانون",
+                                "en": "Law"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 3
+                        },
                         {
                             "id": "french",
                             "title": {
-                                "ar": "فرنسية",
-                                "fr": "Français",
-                                "en": "French"
-                            }
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 2
                         },
                         {
                             "id": "english",
                             "title": {
-                                "ar": "إنجليزية",
-                                "fr": "Anglais",
-                                "en": "English"
-                            }
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "en": "Philosophy"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            },
+                            "coefficient": 2
                         }
                     ]
                 },
@@ -437,9 +1216,171 @@
                             "id": "philosophy",
                             "title": {
                                 "ar": "فلسفة",
-                                "fr": "Philosophie",
                                 "en": "Philosophy"
-                            }
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 6
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 4
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            },
+                            "coefficient": 2
+                        }
+                    ]
+                },
+                {
+                    "id": "languages",
+                    "title": {
+                        "ar": "لغات أجنبية",
+                        "fr": "Langues Étrangères",
+                        "en": "Foreign Languages"
+                    },
+                    "subjects": [
+                        {
+                            "id": "lang1",
+                            "title": {
+                                "ar": "لغة أجنبية أولى",
+                                "en": "Foreign Language 1"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "lang2",
+                            "title": {
+                                "ar": "لغة أجنبية ثانية",
+                                "en": "Foreign Language 2"
+                            },
+                            "coefficient": 5
+                        },
+                        {
+                            "id": "arabic",
+                            "title": {
+                                "ar": "لغة عربية",
+                                "en": "Arabic Literature"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "french",
+                            "title": {
+                                "ar": "لغة فرنسية",
+                                "en": "French Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "english",
+                            "title": {
+                                "ar": "لغة إنجليزية",
+                                "en": "English Language"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "philosophy",
+                            "title": {
+                                "ar": "فلسفة",
+                                "en": "Philosophy"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "history-geo",
+                            "title": {
+                                "ar": "تاريخ وجغرافيا",
+                                "en": "History & Geography"
+                            },
+                            "coefficient": 3
+                        },
+                        {
+                            "id": "islamic",
+                            "title": {
+                                "ar": "علوم إسلامية",
+                                "en": "Islamic Sciences"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "math",
+                            "title": {
+                                "ar": "رياضيات",
+                                "en": "Mathematics"
+                            },
+                            "coefficient": 2
+                        },
+                        {
+                            "id": "pe",
+                            "title": {
+                                "ar": "تربية بدنية",
+                                "en": "Sports/PE"
+                            },
+                            "coefficient": 1
+                        },
+                        {
+                            "id": "amazigh",
+                            "title": {
+                                "ar": "لغة أمازيغية",
+                                "en": "Amazigh Language"
+                            },
+                            "coefficient": 2
                         }
                     ]
                 }

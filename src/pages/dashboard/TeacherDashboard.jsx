@@ -7,6 +7,7 @@ import educationData from '../../data/educational_structure.json';
 import { ROLES, canEditContent } from '../../utils/permissions';
 import QuizCreationForm from '../../components/Quiz/QuizCreationForm';
 import SettingsForm from '../../components/Smart/SettingsForm';
+import CustomSelect from '../../components/UI/CustomSelect';
 import './TeacherDashboard.css';
 
 export default function TeacherDashboard() {
@@ -67,230 +68,272 @@ export default function TeacherDashboard() {
     };
 
     const myFiles = getFilesByUploader(user.id);
+    const totalAnnouncements = announcements.length;
+    const isAr = currentLang.code === 'ar';
+
+    const navItems = [
+        { id: 'overview', label: isAr ? 'نظرة عامة' : 'Overview', icon: '📊', modOnly: true },
+        { id: 'upload', label: isAr ? 'رفع محتوى' : 'Upload', icon: '📤', modOnly: false },
+        { id: 'quiz', label: isAr ? 'إنشاء اختبار' : 'Create Quiz', icon: '📝', modOnly: false },
+        { id: 'files', label: isAr ? 'ملفاتي' : 'My Files', icon: '📂', modOnly: false },
+        { id: 'announcements', label: isAr ? 'الإعلانات' : 'Announcements', icon: '📢', modOnly: true },
+        { id: 'settings', label: isAr ? 'الإعدادات' : 'Settings', icon: '⚙️', modOnly: true },
+    ];
+
+    const filteredNav = navItems.filter(item => !item.modOnly || isModerator);
 
     return (
-        <div className="dashboard-container container">
-            <h1 className="dashboard-title">
-                {currentLang.code === 'ar' ? 'لوحة تحكم الأستاذ' : 'Teacher Dashboard'}
-            </h1>
+        <div className="dashboard-premium-wrapper">
+            {/* Dashboard Sidebar */}
+            <aside className="db-sidebar glass">
+                <div className="db-user-profile">
+                    <div className="db-avatar">{user.role.charAt(0).toUpperCase()}</div>
+                    <div className="db-user-info">
+                        <h3>{user.name}</h3>
+                        <span className="db-role-badge">{user.role}</span>
+                    </div>
+                </div>
+                <nav className="db-nav">
+                    {filteredNav.map(item => (
+                        <button
+                            key={item.id}
+                            className={`db-nav-item ${activeTab === item.id ? 'active' : ''}`}
+                            onClick={() => setActiveTab(item.id)}
+                        >
+                            <span className="db-nav-icon">{item.icon}</span>
+                            <span className="db-nav-label">{item.label}</span>
+                        </button>
+                    ))}
+                </nav>
+            </aside>
 
-            <div className="dashboard-tabs">
-                {isModerator && <button className={activeTab === 'overview' ? 'active' : ''} onClick={() => setActiveTab('overview')}>Overview</button>}
-                <button className={activeTab === 'upload' ? 'active' : ''} onClick={() => setActiveTab('upload')}>Upload Content</button>
-                <button className={activeTab === 'quiz' ? 'active' : ''} onClick={() => setActiveTab('quiz')}>Create Quiz</button>
-                <button className={activeTab === 'files' ? 'active' : ''} onClick={() => setActiveTab('files')}>My Files</button>
-                <button className={activeTab === 'files' ? 'active' : ''} onClick={() => setActiveTab('files')}>My Files</button>
-                {isModerator && (
-                    <>
-                        <button className={activeTab === 'announcements' ? 'active' : ''} onClick={() => setActiveTab('announcements')}>Announcements</button>
-                        <button className={activeTab === 'settings' ? 'active' : ''} onClick={() => setActiveTab('settings')}>Site Settings</button>
-                    </>
-                )}
-            </div>
-
-            <div className="dashboard-content">
-                {activeTab === 'overview' && (
-                    <div className="overview-grid">
-                        <div className="dashboard-card action-card" onClick={() => setActiveTab('announcements')}>
-                            <div className="card-icon">📢</div>
-                            <h3>Announcements</h3>
-                            <p>Publish news and alerts to all students.</p>
-                        </div>
-                        <div className="dashboard-card action-card" onClick={() => setActiveTab('settings')}>
-                            <div className="card-icon">⚙️</div>
-                            <h3>Site Settings</h3>
-                            <p>Manage countdown, social links, and more.</p>
-                        </div>
-                        <div className="dashboard-card action-card" onClick={() => setActiveTab('upload')}>
-                            <div className="card-icon">📚</div>
-                            <h3>Upload Content</h3>
-                            <p>Add lessons, summaries, and exams.</p>
-                        </div>
-                        <div className="dashboard-card action-card" onClick={() => setActiveTab('quiz')}>
-                            <div className="card-icon">📝</div>
-                            <h3>Create Quiz</h3>
-                            <p>Build and publish new quizzes.</p>
-                        </div>
-                        <div className="dashboard-card action-card" onClick={() => setActiveTab('files')}>
-                            <div className="card-icon">📂</div>
-                            <h3>Manage Files</h3>
-                            <p>View and delete your uploaded content.</p>
+            {/* Main Content Area */}
+            <main className="db-main">
+                {/* Stats Header */}
+                <header className="db-stats-header">
+                    <div className="stat-card-mini glass">
+                        <span className="s-icon">📁</span>
+                        <div className="s-data">
+                            <span className="s-value">{myFiles.length}</span>
+                            <span className="s-label">{isAr ? 'ملفات مرفوعة' : 'Uploads'}</span>
                         </div>
                     </div>
-                )}
-
-                {activeTab === 'upload' && (
-                    /* Upload Section */
-                    <section className="dashboard-card upload-section">
-                        <h2>{currentLang.code === 'ar' ? 'رفع محتوى جديد' : 'Upload New Content'}</h2>
-                        <form onSubmit={handleUpload} className="upload-form">
-                            <div className="form-group">
-                                <label>Year</label>
-                                <select
-                                    value={formData.yearId}
-                                    onChange={e => setFormData({ ...formData, yearId: e.target.value, streamId: '', subjectId: '' })}
-                                >
-                                    <option value="">Select Year</option>
-                                    {educationData.years.map(y => (
-                                        <option key={y.id} value={y.id}>{y.title[currentLang.code] || y.title.en}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Stream</label>
-                                <select
-                                    value={formData.streamId}
-                                    disabled={!formData.yearId}
-                                    onChange={e => setFormData({ ...formData, streamId: e.target.value, subjectId: '' })}
-                                >
-                                    <option value="">Select Stream</option>
-                                    {selectedYear?.streams.map(s => (
-                                        <option key={s.id} value={s.id}>{s.title[currentLang.code] || s.title.en}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Subject</label>
-                                <select
-                                    value={formData.subjectId}
-                                    disabled={!formData.streamId}
-                                    onChange={e => setFormData({ ...formData, subjectId: e.target.value })}
-                                >
-                                    <option value="">Select Subject</option>
-                                    {availableSubjects.map(sub => (
-                                        <option key={sub.id} value={sub.id}>{sub.title[currentLang.code] || sub.title.en}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Category</label>
-                                <select
-                                    value={formData.type}
-                                    onChange={e => setFormData({ ...formData, type: e.target.value })}
-                                >
-                                    <option value="lessons">Lessons</option>
-                                    <option value="summaries">Summaries</option>
-                                    <option value="exams">Exams</option>
-                                    <option value="solutions">Solutions</option>
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Title</label>
-                                <input
-                                    type="text"
-                                    value={formData.title}
-                                    onChange={e => setFormData({ ...formData, title: e.target.value })}
-                                    placeholder="e.g. Algebra Chapter 1"
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label>File (PDF)</label>
-                                <input type="file" accept=".pdf" />
-                            </div>
-
-                            <button type="submit" className="upload-btn">Upload</button>
-                            {message && <p className="success-msg">{message}</p>}
-                        </form>
-                    </section>
-                )}
-
-                {activeTab === 'quiz' && (
-                    <QuizCreationForm />
-                )}
-
-                {activeTab === 'files' && (
-                    /* My Files Section */
-                    <section className="dashboard-card files-section">
-                        <h2>{currentLang.code === 'ar' ? 'ملفاتي' : 'My Uploads'}</h2>
-                        <div className="files-list">
-                            {myFiles.length === 0 ? <p className="empty-msg">No files uploaded yet</p> :
-                                myFiles.map(file => (
-                                    <div key={file.id} className="file-item-row">
-                                        <div className="file-info">
-                                            <strong>{file.title}</strong>
-                                            <span className="file-meta">{file.subjectId} • {file.yearId} • {file.type}</span>
-                                        </div>
-                                        <button onClick={() => deleteFile(file.id)} className="delete-btn">🗑️</button>
-                                    </div>
-                                ))
-                            }
+                    <div className="stat-card-mini glass">
+                        <span className="s-icon">📢</span>
+                        <div className="s-data">
+                            <span className="s-value">{totalAnnouncements}</span>
+                            <span className="s-label">{isAr ? 'إعلانات' : 'Announcements'}</span>
                         </div>
-                    </section>
-                )}
-
-                {activeTab === 'announcements' && (
-                    <section className="dashboard-card ann-section">
-                        <h2>Manage Announcements</h2>
-
-                        <div className="ann-form-container" style={{ marginBottom: '2rem', padding: '1rem', background: 'var(--color-background)', borderRadius: '8px' }}>
-                            <h4>Add New Announcement</h4>
-                            <div className="form-group">
-                                <label>Arabic Text</label>
-                                <input
-                                    type="text"
-                                    value={annForm.ar}
-                                    onChange={e => setAnnForm({ ...annForm, ar: e.target.value })}
-                                    placeholder="النص بالعربية"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>English Text</label>
-                                <input
-                                    type="text"
-                                    value={annForm.en}
-                                    onChange={e => setAnnForm({ ...annForm, en: e.target.value })}
-                                    placeholder="Text in English"
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Type</label>
-                                <select value={annForm.type} onChange={e => setAnnForm({ ...annForm, type: e.target.value })}>
-                                    <option value="info">Info (Blue)</option>
-                                    <option value="warning">Warning (Yellow)</option>
-                                    <option value="success">Success (Green)</option>
-                                </select>
-                            </div>
-                            <button
-                                className="upload-btn"
-                                onClick={() => {
-                                    if (!annForm.ar || !annForm.en) return;
-                                    addAnnouncement(annForm.ar, annForm.en, annForm.type);
-                                    setAnnForm({ ar: '', en: '', type: 'info' });
-                                }}
-                            >
-                                Publish Announcement
-                            </button>
+                    </div>
+                    <div className="stat-card-mini glass">
+                        <span className="s-icon">👤</span>
+                        <div className="s-data">
+                            <span className="s-value">Admin</span>
+                            <span className="s-label">{isAr ? 'نوع الحساب' : 'Account'}</span>
                         </div>
+                    </div>
+                </header>
 
-                        <div className="ann-list">
-                            {announcements.map(ann => (
-                                <div key={ann.id} className="file-item-row" style={{ borderLeft: `4px solid ${ann.type === 'info' ? '#3b82f6' : ann.type === 'warning' ? '#f59e0b' : '#10b981'}` }}>
-                                    <div className="file-info">
-                                        <strong>{ann.text.ar}</strong>
-                                        <div style={{ fontSize: '0.85rem', color: 'gray' }}>{ann.text.en}</div>
-                                        <div style={{ fontSize: '0.8rem' }}>Status: {ann.active ? 'Active' : 'Hidden'}</div>
+                <div className="db-content-frame glass">
+                    {activeTab === 'overview' && (
+                        <div className="overview-premium">
+                            <h2>{isAr ? 'مرحبا بك في لوحة القوة' : 'Welcome to Power Panel'}</h2>
+                            <div className="overview-cards-grid">
+                                {filteredNav.filter(n => n.id !== 'overview').map(n => (
+                                    <div key={n.id} className="quick-action-card glass-card" onClick={() => setActiveTab(n.id)}>
+                                        <span className="qa-icon">{n.icon}</span>
+                                        <h3>{n.label}</h3>
+                                        <p>{isAr ? 'انتقل لإدارة هذا القسم' : `Quick access to ${n.label.toLowerCase()} section`}</p>
                                     </div>
-                                    <div className="actions">
-                                        <button onClick={() => toggleAvailability(ann.id)} className="toggle-btn" style={{ marginRight: '5px' }}>
-                                            {ann.active ? 'Hide' : 'Show'}
-                                        </button>
-                                        <button onClick={() => deleteAnnouncement(ann.id)} className="delete-btn">🗑️</button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {activeTab === 'upload' && (
+                        <section className="upload-premium-section">
+                            <div className="section-header">
+                                <h2>{isAr ? 'رفع محتوى جديد' : 'Upload New Content'}</h2>
+                                <p>{isAr ? 'أضف دروساً أو ملخصات أو اختبارات للمنصة' : 'Add lessons, summaries, or exams to the platform'}</p>
+                            </div>
+                            <form onSubmit={handleUpload} className="premium-compact-form">
+                                <div className="form-row-three">
+                                    <CustomSelect
+                                        label={isAr ? 'السنة الدراسية' : 'Year'}
+                                        options={educationData.years.map(y => ({ value: y.id, label: y.title[currentLang.code] }))}
+                                        value={formData.yearId}
+                                        onChange={val => setFormData({ ...formData, yearId: val, streamId: '', subjectId: '' })}
+                                    />
+                                    <CustomSelect
+                                        label={isAr ? 'الشعبة' : 'Stream'}
+                                        options={selectedYear?.streams.map(s => ({ value: s.id, label: s.title[currentLang.code] })) || []}
+                                        value={formData.streamId}
+                                        onChange={val => setFormData({ ...formData, streamId: val, subjectId: '' })}
+                                    />
+                                    <CustomSelect
+                                        label={isAr ? 'المادة' : 'Subject'}
+                                        options={availableSubjects.map(sub => ({ value: sub.id, label: sub.title[currentLang.code] }))}
+                                        value={formData.subjectId}
+                                        onChange={val => setFormData({ ...formData, subjectId: val })}
+                                    />
+                                </div>
+
+                                <div className="form-row-two">
+                                    <CustomSelect
+                                        label={isAr ? 'التصنيف' : 'Category'}
+                                        options={[
+                                            { value: 'lessons', label: isAr ? 'دروس' : 'Lessons' },
+                                            { value: 'summaries', label: isAr ? 'ملخصات' : 'Summaries' },
+                                            { value: 'exams', label: isAr ? 'امتحانات' : 'Exams' }
+                                        ]}
+                                        value={formData.type}
+                                        onChange={val => setFormData({ ...formData, type: val })}
+                                    />
+                                    <div className="input-field-db">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={formData.title}
+                                            onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                            placeholder=" "
+                                            id="file-title"
+                                        />
+                                        <label htmlFor="file-title">{isAr ? 'عنوان الملف' : 'File Title'}</label>
+                                        <div className="db-input-line"></div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
 
-                {activeTab === 'settings' && (
-                    <SettingsForm />
-                )}
-            </div>
+                                <div className="file-upload-zone glass">
+                                    <input type="file" accept=".pdf" id="pdf-input" className="hidden-file-input" />
+                                    <label htmlFor="pdf-input" className="file-label-premium">
+                                        <span className="upload-big-icon">📄</span>
+                                        <span>{isAr ? 'انقر أو اسحب ملف PDF هنا' : 'Click or drag PDF file here'}</span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" className="db-primary-btn">
+                                    <span>{isAr ? 'نشر المحتوى' : 'Publish Content'}</span>
+                                    <i className="btn-glow"></i>
+                                </button>
+                                {message && <div className="db-success-toast">{message}</div>}
+                            </form>
+                        </section>
+                    )}
+
+                    {activeTab === 'quiz' && <QuizCreationForm />}
+
+                    {activeTab === 'files' && (
+                        <section className="files-premium-section">
+                            <div className="section-header">
+                                <h2>{isAr ? 'إدارة ملفاتي' : 'Manage My Files'}</h2>
+                            </div>
+                            <div className="db-items-list">
+                                {myFiles.length === 0 ? (
+                                    <div className="db-empty-state">
+                                        <span>📂</span>
+                                        <p>{isAr ? 'لم تقم برفع أي ملفات بعد' : 'No files uploaded yet'}</p>
+                                    </div>
+                                ) : (
+                                    myFiles.map(file => (
+                                        <div key={file.id} className="db-item-row glass">
+                                            <div className="item-main-info">
+                                                <div className="item-icon-circle">📄</div>
+                                                <div className="item-text">
+                                                    <strong>{file.title}</strong>
+                                                    <span className="item-sub">{file.subjectId} • {file.type}</span>
+                                                </div>
+                                            </div>
+                                            <div className="item-actions">
+                                                <button onClick={() => deleteFile(file.id)} className="db-delete-btn" title="Delete">🗑️</button>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        </section>
+                    )}
+
+                    {activeTab === 'announcements' && (
+                        <section className="ann-premium-section">
+                            <div className="section-header">
+                                <h2>{isAr ? 'إدارة الإعلانات' : 'Announcements Management'}</h2>
+                            </div>
+
+                            <div className="db-ann-form-card glass">
+                                <h3>{isAr ? 'إضافة إعلان جديد' : 'New Announcement'}</h3>
+                                <div className="ann-grid-form">
+                                    <div className="input-field-db">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={annForm.ar}
+                                            onChange={e => setAnnForm({ ...annForm, ar: e.target.value })}
+                                            placeholder=" "
+                                            id="ann-ar"
+                                        />
+                                        <label htmlFor="ann-ar">{isAr ? 'النص بالعربية' : 'Arabic Text'}</label>
+                                        <div className="db-input-line"></div>
+                                    </div>
+                                    <div className="input-field-db">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={annForm.en}
+                                            onChange={e => setAnnForm({ ...annForm, en: e.target.value })}
+                                            placeholder=" "
+                                            id="ann-en"
+                                        />
+                                        <label htmlFor="ann-en">{isAr ? 'النص بالإنجليزية' : 'English Text'}</label>
+                                        <div className="db-input-line"></div>
+                                    </div>
+                                    <CustomSelect
+                                        label={isAr ? 'نوع الإعلان' : 'Type'}
+                                        options={[
+                                            { value: 'info', label: 'Info (Blue)' },
+                                            { value: 'warning', label: 'Warning (Yellow)' },
+                                            { value: 'success', label: 'Success (Green)' }
+                                        ]}
+                                        value={annForm.type}
+                                        onChange={val => setAnnForm({ ...annForm, type: val })}
+                                    />
+                                    <button
+                                        className="db-primary-btn"
+                                        onClick={() => {
+                                            if (!annForm.ar || !annForm.en) return;
+                                            addAnnouncement(annForm.ar, annForm.en, annForm.type);
+                                            setAnnForm({ ar: '', en: '', type: 'info' });
+                                        }}
+                                    >
+                                        {isAr ? 'نشر الآن' : 'Publish Now'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="db-items-list mt-2">
+                                {announcements.map(ann => (
+                                    <div key={ann.id} className={`db-item-row ann-border-${ann.type} glass`}>
+                                        <div className="item-main-info">
+                                            <div className="item-icon-circle">📢</div>
+                                            <div className="item-text">
+                                                <strong>{ann.text.ar}</strong>
+                                                <span className="item-sub">{ann.text.en}</span>
+                                            </div>
+                                        </div>
+                                        <div className="item-actions">
+                                            <button onClick={() => toggleAvailability(ann.id)} className="db-icon-btn">
+                                                {ann.active ? '👁️' : '🕶️'}
+                                            </button>
+                                            <button onClick={() => deleteAnnouncement(ann.id)} className="db-delete-btn">🗑️</button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {activeTab === 'settings' && <SettingsForm />}
+                </div>
+            </main>
         </div>
     );
 }

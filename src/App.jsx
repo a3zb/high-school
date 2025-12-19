@@ -11,95 +11,118 @@ import StreamList from './components/Home/StreamList'; // We might only use this
 import YearPage from './pages/YearPage';
 import StreamPage from './pages/StreamPage';
 import SubjectPage from './pages/SubjectPage';
+import SearchResultsPage from './pages/SearchResultsPage';
 import { AuthProvider } from './context/AuthContext';
 import { ContentProvider } from './context/ContentContext';
 import { CommentProvider } from './context/CommentContext';
 import { QuizProvider } from './context/QuizContext';
 import { SettingsProvider } from './context/SettingsContext';
 import { AnnouncementProvider } from './context/AnnouncementContext';
+import { UserStatsProvider } from './context/UserStatsContext';
+import { FavoritesProvider } from './context/FavoritesContext';
 import TeacherDashboard from './pages/dashboard/TeacherDashboard';
 import CalculatorPage from './pages/CalculatorPage';
+import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
 import StudyPlannerPage from './pages/StudyPlannerPage';
+import FavoritesPage from './pages/FavoritesPage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
+import { ROLES } from './utils/permissions';
+import Sidebar from './components/Layout/Sidebar';
+import StickyBacCountdown from './components/Smart/StickyBacCountdown';
+import { useContent } from './context/ContentContext';
 import './index.css';
 
 // Home Component that combines Hero + Selector
 function HomePage() {
-    const [selectedYear, setSelectedYear] = useState(null);
-
     // Note: On the homepage, maybe we just show the selector?
-    // Or we keep the behavior: click year -> show streams underneath.
-    // BUT the user request asked for separate pages for "1st Year", "2nd Year".
-    // So the homepage Year Selector should probably NAVIGATE to /year/:id.
+    const { activeYear, setActiveYear } = useContent();
+    const navigate = useNavigate();
 
-    // Let's wrapping the navigation logic in the YearSelector or pass a handler that navigates.
-    // Actually, let's update YearSelector to use Links or handle navigation.
-    // To keep it clean, I'll update YearSelector to accept a 'onSelect' that navigates, 
-    // OR I will just refactor YearSelector in place. 
-    // Since I shouldn't change the interface too much, I'll make a small wrapper here.
-
-    // Actually, better UX: The HomePage has the Years. Clicking one goes to /year/1as.
-    // The StreamList component below it on Home is redundant if we have a YearPage.
-    // I will Keep the HomePage simple: Hero + Year Grid.
-
-    // Wait, I need to pass a navigation handler to YearSelector?
-    // No, I can make YearSelector use Links if I edit it.
-    // But strictly I should pass the logic down.
-    // For now, let's just make the HomePage Render the YearSelector, and we'll refactor YearSelector to Link.
+    const handleYearSelect = (id) => {
+        setActiveYear(id);
+        // Optionally navigate to the year page immediately
+        // navigate(`/year/${id}`);
+    };
 
     return (
         <>
             <Hero />
-            <div className="content-spacer">
-                <YearWrapper />
-            </div>
+            <YearSelector selectedYear={activeYear} onSelectYear={handleYearSelect} />
+            {activeYear && (
+                <div className="container" style={{ paddingBottom: '4rem' }}>
+                    <StreamList selectedYearId={activeYear} />
+                </div>
+            )}
         </>
     );
 }
 
-// Helper to use useNavigate inside the component used by home
-import { useNavigate } from 'react-router-dom';
-
-function YearWrapper() {
-    const navigate = useNavigate();
-    return (
-        <YearSelector
-            selectedYear={null}
-            onSelectYear={(id) => navigate(`/year/${id}`)}
-        />
-    );
-}
+const ProtectedRoute = ({ children, allowedRoles }) => {
+    const { user } = useAuth();
+    if (!user || !allowedRoles.includes(user.role)) {
+        return <Navigate to="/login" replace />;
+    }
+    return children;
+};
 
 function App() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     return (
         <AuthProvider>
             <ContentProvider>
                 <CommentProvider>
                     <QuizProvider>
                         <SettingsProvider>
-                            <AnnouncementProvider>
-                                <LanguageProvider>
-                                    <ThemeProvider>
-                                        <div className="app-wrapper">
-                                            <Header />
-                                            <AnnouncementBar />
-                                            <main className="main-content">
-                                                <Routes>
-                                                    <Route path="/" element={<HomePage />} />
-                                                    <Route path="/year/:yearId" element={<YearPage />} />
-                                                    <Route path="/year/:yearId/stream/:streamId" element={<StreamPage />} />
-                                                    <Route path="/year/:yearId/stream/:streamId/subject/:subjectId" element={<SubjectPage />} />
-                                                    <Route path="/calculator" element={<CalculatorPage />} />
-                                                    <Route path="/login" element={<LoginPage />} />
-                                                    <Route path="/planner" element={<StudyPlannerPage />} />
-                                                    <Route path="/dashboard" element={<TeacherDashboard />} />
-                                                </Routes>
-                                            </main>
-                                            <Footer />
-                                        </div>
-                                    </ThemeProvider>
-                                </LanguageProvider>
-                            </AnnouncementProvider>
+                            <UserStatsProvider>
+                                <FavoritesProvider>
+                                    <AnnouncementProvider>
+                                        <LanguageProvider>
+                                            <ThemeProvider>
+                                                <div className="app-wrapper">
+                                                    <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+                                                    <AnnouncementBar />
+                                                    <div className="layout-content-wrapper">
+                                                        <Sidebar
+                                                            isOpen={isSidebarOpen}
+                                                            onClose={() => setIsSidebarOpen(false)}
+                                                        />
+                                                        <main className="main-content">
+                                                            <Routes>
+                                                                <Route path="/" element={<HomePage />} />
+                                                                <Route path="/year/:yearId" element={<YearPage />} />
+                                                                <Route path="/year/:yearId/stream/:streamId" element={<StreamPage />} />
+                                                                <Route path="/year/:yearId/stream/:streamId/subject/:subjectId" element={<SubjectPage />} />
+                                                                <Route path="/search" element={<SearchResultsPage />} />
+                                                                <Route path="/calculator" element={<CalculatorPage />} />
+                                                                <Route path="/login" element={<LoginPage />} />
+                                                                <Route path="/planner" element={<StudyPlannerPage />} />
+                                                                <Route path="/favorites" element={<FavoritesPage />} />
+                                                                <Route path="/analytics" element={<AnalyticsPage />} />
+                                                                <Route path="/leaderboard" element={<LeaderboardPage />} />
+                                                                <Route
+                                                                    path="/dashboard"
+                                                                    element={
+                                                                        <ProtectedRoute allowedRoles={[ROLES.TEACHER, ROLES.MODERATOR]}>
+                                                                            <TeacherDashboard />
+                                                                        </ProtectedRoute>
+                                                                    }
+                                                                />
+                                                            </Routes>
+                                                            <StickyBacCountdown />
+                                                        </main>
+                                                    </div>
+                                                    <Footer />
+                                                </div>
+                                            </ThemeProvider>
+                                        </LanguageProvider>
+                                    </AnnouncementProvider>
+                                </FavoritesProvider>
+                            </UserStatsProvider>
                         </SettingsProvider>
                     </QuizProvider>
                 </CommentProvider>

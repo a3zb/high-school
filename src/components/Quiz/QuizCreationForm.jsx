@@ -4,12 +4,14 @@ import { useQuizzes } from '../../context/QuizContext';
 import { useLanguage } from '../../context/LanguageContext';
 import educationData from '../../data/educational_structure.json';
 import { canEditContent } from '../../utils/permissions';
+import CustomSelect from '../UI/CustomSelect';
 import './QuizStyles.css';
 
 export default function QuizCreationForm() {
     const { user } = useAuth();
     const { addQuiz } = useQuizzes();
     const { currentLang } = useLanguage();
+    const isAr = currentLang.code === 'ar';
 
     const [formData, setFormData] = useState({
         title: '',
@@ -19,7 +21,6 @@ export default function QuizCreationForm() {
         questions: []
     });
 
-    // Temporary state for adding a single question
     const [currentQuestion, setCurrentQuestion] = useState({
         text: '',
         options: ['', ''],
@@ -30,7 +31,6 @@ export default function QuizCreationForm() {
 
     const handleAddQuestion = () => {
         if (!currentQuestion.text || currentQuestion.options.some(opt => !opt)) {
-            alert("Please check question data");
             return;
         }
         setFormData(prev => ({
@@ -49,87 +49,114 @@ export default function QuizCreationForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.title || !formData.subjectId || formData.questions.length === 0) {
-            alert("Please fill all quiz details");
             return;
         }
         addQuiz(formData);
-        alert("Quiz Created!");
         setFormData({ title: '', yearId: '', streamId: '', subjectId: '', questions: [] });
     };
 
-    // Logic to get subjects same as TeacherDashboard
     const selectedYear = educationData.years.find(y => y.id === formData.yearId);
     const selectedStream = selectedYear?.streams.find(s => s.id === formData.streamId);
     const availableSubjects = selectedStream?.subjects?.filter(sub => canEditContent(user, sub.id)) || [];
 
     return (
-        <div className="quiz-creation-container">
-            <h3>Create New Quiz</h3>
-            <form onSubmit={handleSubmit} className="quiz-form">
-                {/* Metadata Select definitions similar to Dashboard */}
-                <div className="form-group">
-                    <select value={formData.yearId} onChange={e => setFormData({ ...formData, yearId: e.target.value })}>
-                        <option value="">Select Year</option>
-                        {educationData.years.map(y => <option key={y.id} value={y.id}>{y.title[currentLang.code]}</option>)}
-                    </select>
-                </div>
-                <div className="form-group">
-                    <select value={formData.streamId} disabled={!formData.yearId} onChange={e => setFormData({ ...formData, streamId: e.target.value })}>
-                        <option value="">Select Stream</option>
-                        {selectedYear?.streams.map(s => <option key={s.id} value={s.id}>{s.title[currentLang.code]}</option>)}
-                    </select>
-                </div>
-                <div className="form-group">
-                    <select value={formData.subjectId} disabled={!formData.streamId} onChange={e => setFormData({ ...formData, subjectId: e.target.value })}>
-                        <option value="">Select Subject</option>
-                        {availableSubjects.map(s => <option key={s.id} value={s.id}>{s.title[currentLang.code]}</option>)}
-                    </select>
+        <div className="quiz-premium-container">
+            <div className="section-header">
+                <h2>{isAr ? 'إنشاء اختبار تفاعلي' : 'Create Interactive Quiz'}</h2>
+                <p>{isAr ? 'قم ببناء أسئلة برمجية لتقييم الطلاب' : 'Build automated questions to evaluate students'}</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="premium-compact-form">
+                <div className="form-row-three">
+                    <CustomSelect
+                        label={isAr ? 'السنة' : 'Year'}
+                        options={educationData.years.map(y => ({ value: y.id, label: y.title[currentLang.code] }))}
+                        value={formData.yearId}
+                        onChange={val => setFormData({ ...formData, yearId: val, streamId: '', subjectId: '' })}
+                    />
+                    <CustomSelect
+                        label={isAr ? 'الشعبة' : 'Stream'}
+                        options={selectedYear?.streams.map(s => ({ value: s.id, label: s.title[currentLang.code] })) || []}
+                        value={formData.streamId}
+                        onChange={val => setFormData({ ...formData, streamId: val, subjectId: '' })}
+                    />
+                    <CustomSelect
+                        label={isAr ? 'المادة' : 'Subject'}
+                        options={availableSubjects.map(sub => ({ value: sub.id, label: sub.title[currentLang.code] }))}
+                        value={formData.subjectId}
+                        onChange={val => setFormData({ ...formData, subjectId: val })}
+                    />
                 </div>
 
-                <div className="form-group">
+                <div className="input-field-db">
                     <input
                         type="text"
-                        placeholder="Quiz Title"
+                        required
                         value={formData.title}
                         onChange={e => setFormData({ ...formData, title: e.target.value })}
+                        placeholder=" "
+                        id="quiz-title"
                     />
+                    <label htmlFor="quiz-title">{isAr ? 'عنوان الاختبار' : 'Quiz Title'}</label>
+                    <div className="db-input-line"></div>
                 </div>
 
                 {/* Question Builder */}
-                <div className="question-builder">
-                    <h4>Add Question</h4>
-                    <input
-                        type="text"
-                        placeholder="Question Text"
-                        value={currentQuestion.text}
-                        onChange={e => setCurrentQuestion({ ...currentQuestion, text: e.target.value })}
-                    />
-                    {currentQuestion.options.map((opt, idx) => (
-                        <div key={idx} className="option-row">
-                            <input
-                                type="radio"
-                                name="correct-opt"
-                                checked={currentQuestion.correctOptionIndex === idx}
-                                onChange={() => setCurrentQuestion({ ...currentQuestion, correctOptionIndex: idx })}
-                            />
-                            <input
-                                type="text"
-                                placeholder={`Option ${idx + 1}`}
-                                value={opt}
-                                onChange={(e) => updateOption(idx, e.target.value)}
-                            />
-                        </div>
-                    ))}
-                    <button type="button" onClick={() => setCurrentQuestion(p => ({ ...p, options: [...p.options, ''] }))}>+ Option</button>
-                    <button type="button" className="add-question-btn" onClick={handleAddQuestion}>Add Question to Quiz</button>
+                <div className="question-builder-premium glass-card">
+                    <h3>{isAr ? 'إضافة سؤال' : 'Add Question'}</h3>
+
+                    <div className="input-field-db">
+                        <input
+                            type="text"
+                            required
+                            value={currentQuestion.text}
+                            onChange={e => setCurrentQuestion({ ...currentQuestion, text: e.target.value })}
+                            placeholder=" "
+                            id="q-text"
+                        />
+                        <label htmlFor="q-text">{isAr ? 'نص السؤال' : 'Question Text'}</label>
+                        <div className="db-input-line"></div>
+                    </div>
+
+                    <div className="options-grid-premium">
+                        {currentQuestion.options.map((opt, idx) => (
+                            <div key={idx} className="option-row-premium">
+                                <input
+                                    type="radio"
+                                    name="correct-opt"
+                                    checked={currentQuestion.correctOptionIndex === idx}
+                                    onChange={() => setCurrentQuestion({ ...currentQuestion, correctOptionIndex: idx })}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder={isAr ? `الخيار ${idx + 1}` : `Option ${idx + 1}`}
+                                    value={opt}
+                                    onChange={(e) => updateOption(idx, e.target.value)}
+                                    className="option-input"
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="builder-actions">
+                        <button type="button" className="db-icon-btn" onClick={() => setCurrentQuestion(p => ({ ...p, options: [...p.options, ''] }))}>
+                            ➕ {isAr ? 'خيار جديد' : 'New Option'}
+                        </button>
+                        <button type="button" className="db-primary-btn mini" onClick={handleAddQuestion}>
+                            {isAr ? 'تثبيت السؤال' : 'Confirm Question'}
+                        </button>
+                    </div>
                 </div>
 
-                {/* Preview */}
-                <div className="quiz-preview">
-                    <p>Questions Added: {formData.questions.length}</p>
-                </div>
+                {formData.questions.length > 0 && (
+                    <div className="quiz-summary-mini glass">
+                        <span>📝 {isAr ? 'الأسئلة المضافة:' : 'Questions added:'} <strong>{formData.questions.length}</strong></span>
+                    </div>
+                )}
 
-                <button type="submit" className="submit-quiz-btn"><strong>Create Quiz</strong></button>
+                <button type="submit" className="db-primary-btn" disabled={formData.questions.length === 0}>
+                    {isAr ? 'حفظ ونشر الاختبار' : 'Save & Publish Quiz'}
+                </button>
             </form>
         </div>
     );

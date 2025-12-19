@@ -39,3 +39,20 @@
     color: #fff;
     border-color: var(--color-secondary);
 }
+
+
+
+@media (max-width: 480px) {
+    .years-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .year-card {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+}

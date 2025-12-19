@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useUserStats } from '../../context/UserStatsContext';
 import './QuizStyles.css';
 
 export default function QuizTaker({ quiz }) {
     const { user } = useAuth();
+    const { recordQuizCompletion } = useUserStats();
     const [answers, setAnswers] = useState({}); // { questionId: optionIndex }
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(0);
@@ -26,6 +28,7 @@ export default function QuizTaker({ quiz }) {
         });
         setScore(calculatedScore);
         setSubmitted(true);
+        recordQuizCompletion(calculatedScore, quiz.questions.length, quiz.title);
     };
 
     return (

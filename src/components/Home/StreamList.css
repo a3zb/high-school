@@ -39,6 +39,16 @@
     color: inherit;
 }
 
+@media (max-width: 480px) {
+    .section-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .stream-card {
+        padding: 0.75rem;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

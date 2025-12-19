@@ -1,24 +1,87 @@
 {
     "codes": {
-        "math-teacher-code": {
+        "math-prof-2025": {
             "role": "teacher",
             "subjectIds": [
                 "math"
             ]
         },
-        "science-teacher-code": {
+        "science-prof-2025": {
             "role": "teacher",
             "subjectIds": [
-                "science",
+                "science"
+            ]
+        },
+        "physics-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
                 "physics"
             ]
         },
-        "humanities-teacher-code": {
+        "arabic-prof-2025": {
             "role": "teacher",
             "subjectIds": [
-                "arabic",
-                "philosophy",
+                "arabic"
+            ]
+        },
+        "philo-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "philosophy"
+            ]
+        },
+        "histgeo-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
                 "history-geo"
+            ]
+        },
+        "islamic-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "islamic"
+            ]
+        },
+        "french-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "french"
+            ]
+        },
+        "english-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "english"
+            ]
+        },
+        "amazigh-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "amazigh"
+            ]
+        },
+        "tech-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "tech"
+            ]
+        },
+        "accounting-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "accounting"
+            ]
+        },
+        "economy-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "economy"
+            ]
+        },
+        "law-prof-2025": {
+            "role": "teacher",
+            "subjectIds": [
+                "law"
             ]
         },
         "mod-super-secret": {

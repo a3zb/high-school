@@ -1,0 +1,223 @@
+.analytics-page {
+    padding: 2rem 0;
+}
+
+.analytics-hero {
+    margin-bottom: 3rem;
+    padding: 3.5rem 2rem;
+    background: var(--mesh-gradient);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    color: white;
+    box-shadow: var(--shadow-lg);
+}
+
+.analytics-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+}
+
+.overall-stats-premium {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.stat-pill-premium {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-pill-premium .label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.stat-pill-premium .value {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+/* Grid & Cards */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.analytics-card-premium {
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.analytics-card-premium:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-secondary);
+}
+
+.analytics-card-premium h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Goal Visualization */
+.goal-viz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.circular-prog-premium {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(var(--color-secondary) var(--progress), var(--glass-border) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+}
+
+.circular-prog-premium::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: var(--color-background);
+    border-radius: 50%;
+}
+
+.prog-center-text {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prog-current {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.prog-target {
+    font-size: 0.9rem;
+    opacity: 0.5;
+}
+
+/* Effort Chart */
+.premium-bar-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.effort-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.effort-row-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.effort-bar-bg {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.effort-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Activity Feed */
+.activity-list-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.activity-card-mini {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-lg);
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.activity-card-mini:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--glass-border);
+}
+
+.type-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.type-indicator.quiz {
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+}
+
+.type-indicator.lesson {
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.act-info {
+    flex: 1;
+}
+
+.act-info strong {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.act-info span {
+    font-size: 0.75rem;
+    opacity: 0.5;
+}
+
+.act-xp-badge {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+}
+
+@media (max-width: 600px) {
+    .overall-stats-premium {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

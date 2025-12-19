@@ -24,12 +24,19 @@ export default function Hero() {
 
     const text = content[currentLang.code] || content.en;
 
+    const scrollToContent = () => {
+        const target = document.querySelector('.content-spacer');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <section className="hero">
             <div className="container hero-container">
                 <h1 className="hero-title">{text.title}</h1>
                 <p className="hero-subtitle">{text.subtitle}</p>
-                <button className="hero-cta">{text.cta}</button>
+                <button className="hero-cta" onClick={scrollToContent}>{text.cta}</button>
             </div>
         </section>
     );

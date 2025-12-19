@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useContent } from '../context/ContentContext';
 import { useQuizzes } from '../context/QuizContext';
+import { useFavorites } from '../context/FavoritesContext';
+import { useUserStats } from '../context/UserStatsContext';
 import Breadcrumbs from '../components/UI/Breadcrumbs';
 import CommentSection from '../components/Comments/CommentSection';
 import QuizTaker from '../components/Quiz/QuizTaker';
+import ContentCard from '../components/UI/ContentCard';
 import educationData from '../data/educational_structure.json';
 import './SubjectPage.css';
 
@@ -22,6 +25,7 @@ export default function SubjectPage() {
     const { currentLang } = useLanguage();
     const { getFilesBySubject } = useContent();
     const { getQuizzesBySubject } = useQuizzes();
+    const { toggleFavorite, isFavorite } = useFavorites();
     const [activeTab, setActiveTab] = useState('lessons');
 
     // Resolve Data
@@ -29,17 +33,39 @@ export default function SubjectPage() {
     const stream = year?.streams.find(s => s.id === streamId);
     const subject = stream?.subjects?.find(s => s.id === subjectId);
 
+    const { recordLessonView } = useUserStats();
+
+    useEffect(() => {
+        if (subject && activeTab !== 'quizzes') {
+            recordLessonView(subject.id, `${subject.title[currentLang.code] || subject.title.en} (${activeTab})`);
+        }
+    }, [activeTab]);
+
     if (!subject) return <div className="container">Subject not found</div>;
 
     const renderContent = () => {
         if (activeTab === 'quizzes') {
-            const quizzes = getQuizzesBySubject(subjectId);
-            if (quizzes.length === 0) return <p className="empty-content-msg">{currentLang.code === 'ar' ? 'لا توجد اختبارات' : 'No quizzes available'}</p>;
+            const subjectQuizzes = getQuizzesBySubject(subjectId);
+            if (subjectQuizzes.length === 0) return <p className="empty-content-msg">{currentLang.code === 'ar' ? 'لا توجد اختبارات' : 'No quizzes available'}</p>;
 
             return (
                 <div className="quiz-list-container">
-                    {quizzes.map(quiz => (
-                        <div key={quiz.id} className="quiz-wrapper" style={{ marginBottom: '2rem' }}>
+                    {subjectQuizzes.map(quiz => (
+                        <div key={quiz.id} className="content-item quiz-item">
+                            <div className="item-meta">
+                                <h4>{quiz.title}</h4>
+                                <button
+                                    className={`fav-btn ${isFavorite(quiz.id) ? 'active' : ''}`}
+                                    onClick={() => toggleFavorite({
+                                        id: quiz.id,
+                                        title: quiz.title,
+                                        type: 'Quiz',
+                                        path: window.location.pathname
+                                    })}
+                                >
+                                    {isFavorite(quiz.id) ? '⭐' : '☆'}
+                                </button>
+                            </div>
                             <QuizTaker quiz={quiz} />
                         </div>
                     ))}
@@ -51,12 +77,45 @@ export default function SubjectPage() {
         const files = getFilesBySubject(subjectId, activeTab);
         if (files.length === 0) return <p className="empty-content-msg">{currentLang.code === 'ar' ? 'لا يوجد محتوى' : 'No content available'}</p>;
 
+        const groupedFiles = {};
+        if (activeTab === 'exams') {
+            files.forEach(f => {
+                const term = f.term || 'general';
+                if (!groupedFiles[term]) groupedFiles[term] = [];
+                groupedFiles[term].push(f);
+            });
+        }
+
+        const getTermName = (term) => {
+            if (term === '1') return currentLang.code === 'ar' ? 'الفصل الأول' : 'First Term';
+            if (term === '2') return currentLang.code === 'ar' ? 'الفصل الثاني' : 'Second Term';
+            if (term === '3') return currentLang.code === 'ar' ? 'الفصل الثالث' : 'Third Term';
+            return currentLang.code === 'ar' ? 'عام' : 'General';
+        };
+
+        if (activeTab === 'exams') {
+            return (
+                <div className="terms-container">
+                    {Object.keys(groupedFiles).sort().map(term => (
+                        <div key={term} className="term-section">
+                            <h3 className="term-title">{getTermName(term)}</h3>
+                            <div className="content-grid-dz">
+                                {groupedFiles[term].map(file => (
+                                    <ContentCard key={file.id} file={file} subjectId={subjectId} lang={currentLang.code} />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            );
+        }
+
         return (
-            <ul className="content-list">
+            <div className="content-grid-dz">
                 {files.map(file => (
-                    <ContentItem key={file.id} file={file} subjectId={subjectId} lang={currentLang.code} />
+                    <ContentCard key={file.id} file={file} subjectId={subjectId} lang={currentLang.code} />
                 ))}
-            </ul>
+            </div>
         );
     };
 
@@ -95,35 +154,5 @@ export default function SubjectPage() {
 
             </div>
         </div>
-    );
-}
-
-function ContentItem({ file, subjectId, lang }) {
-    const [showComments, setShowComments] = useState(false);
-
-    return (
-        <li className="content-item-wrapper">
-            <div className="content-main-row">
-                <div className="content-info">
-                    <span className="file-icon">📄</span>
-                    <span className="file-title">{file.title}</span>
-                    <span className="file-date">{file.date}</span>
-                </div>
-                <div className="content-actions">
-                    <a href={file.url} className="download-btn" title="Download">⬇</a>
-                    <button
-                        onClick={() => setShowComments(!showComments)}
-                        className={`toggle-comments-btn ${showComments ? 'active' : ''}`}
-                        title="Comments"
-                    >
-                        💬
-                    </button>
-                </div>
-            </div>
-
-            {showComments && (
-                <CommentSection contentId={file.id} subjectId={subjectId} />
-            )}
-        </li>
     );
 }

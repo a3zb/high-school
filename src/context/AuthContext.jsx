@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }) => {
             return { success: true, role: result.role };
         }
         return { success: false, error: 'Invalid activation code' };
-        return { success: false, error: 'Invalid activation code' };
     };
 
     const loginWithCredentials = (username, password) => {

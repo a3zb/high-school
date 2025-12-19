@@ -1,67 +1,64 @@
-.language-dropdown {
+.custom-select-container {
     position: relative;
-    user-select: none;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
-.lang-toggle {
+.custom-select-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-muted);
+}
+
+.custom-select-trigger {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.6rem 1.2rem;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     color: var(--color-text);
     font-family: inherit;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.lang-toggle:hover {
-    background: var(--color-surface);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.lang-toggle.active {
+.custom-select-trigger:hover {
     border-color: var(--color-secondary);
+    background: var(--color-surface);
 }
 
-.lang-flag {
-    font-size: 1.2rem;
+.custom-select-trigger.active {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-.chevron {
-    font-size: 0.6rem;
-    opacity: 0.5;
-    transition: transform 0.3s ease;
+.custom-select-trigger.placeholder {
+    color: var(--color-text-muted);
 }
 
-.chevron.up {
-    transform: rotate(180deg);
-}
-
-.lang-menu {
+.custom-select-menu {
     position: absolute;
     top: calc(100% + 0.5rem);
+    left: 0;
     right: 0;
-    min-width: 160px;
-    z-index: 1000;
+    z-index: 2000;
     padding: 0.5rem;
     border-radius: var(--radius-lg);
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    animation: slideDown 0.3s ease-out;
+    max-height: 300px;
+    overflow-y: auto;
+    animation: slideDownCustom 0.3s ease-out;
 }
 
-.lang-option {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+.custom-select-option {
     padding: 0.8rem 1rem;
     border: none;
     background: transparent;
@@ -74,21 +71,28 @@
     transition: all 0.2s ease;
 }
 
-[dir="rtl"] .lang-option {
+[dir="rtl"] .custom-select-option {
     text-align: right;
 }
 
-.lang-option:hover {
+.custom-select-option:hover {
     background: rgba(59, 130, 246, 0.1);
     color: var(--color-secondary);
 }
 
-.lang-option.selected {
+.custom-select-option.selected {
     background: var(--color-secondary);
     color: white;
 }
 
-@keyframes slideDown {
+.custom-select-no-options {
+    padding: 1rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+}
+
+@keyframes slideDownCustom {
     from {
         opacity: 0;
         transform: translateY(-10px);
