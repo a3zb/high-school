@@ -115,8 +115,20 @@
 }
 
 @media (max-width: 768px) {
+    .sticky-bac-wrapper {
+        padding: 0.4rem 0.75rem;
+    }
+
+    .sticky-bac-content {
+        gap: 0.4rem;
+    }
+
     .sticky-bac-wrapper .bac-countdown {
-        flex-direction: column;
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+
+    .sticky-bac-wrapper .countdown-timer {
         gap: 0.5rem;
     }
 
@@ -125,11 +137,27 @@
     }
 
     .sticky-bac-wrapper .time-unit {
-        min-width: 50px;
-        padding: 0.25rem;
+        min-width: 42px;
+        padding: 0.2rem;
+        border-radius: 0.4rem;
     }
 
     .sticky-bac-wrapper .time-unit .number {
-        font-size: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .sticky-bac-wrapper .time-unit .label {
+        font-size: 0.6rem;
+    }
+
+    .sticky-calc-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .bac-badge {
+        display: none;
     }
 }

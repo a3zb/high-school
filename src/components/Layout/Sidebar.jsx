@@ -2,6 +2,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
 import { ROLES } from '../../utils/permissions';
+import LanguageSwitcher from '../UI/LanguageSwitcher';
+import ThemeToggle from '../UI/ThemeToggle';
 import './Sidebar.css';
 
 export default function Sidebar({ isOpen, onClose }) {
@@ -16,7 +18,6 @@ export default function Sidebar({ isOpen, onClose }) {
         { path: '/favorites', label: isAr ? 'المفضلة' : 'Favorites', icon: '⭐' },
         { path: '/calculator', label: isAr ? 'حساب المعدل' : 'Calculator', icon: '🧮' },
         { path: '/analytics', label: isAr ? 'إحصائياتي' : 'Analytics', icon: '📊' },
-        { path: '/leaderboard', label: isAr ? 'المتصدرين' : 'Leaderboard', icon: '🏆' },
     ];
 
     // Only show dashboard for teachers and moderators
@@ -52,6 +53,10 @@ export default function Sidebar({ isOpen, onClose }) {
                     ))}
                 </nav>
                 <div className="sidebar-footer">
+                    <div className="sidebar-settings hide-desktop">
+                        <LanguageSwitcher />
+                        <ThemeToggle />
+                    </div>
                     <p>{isAr ? 'منصة النجاح' : 'Success Platform'}</p>
                 </div>
             </aside>

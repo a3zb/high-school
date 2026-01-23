@@ -5,7 +5,12 @@ import './SmartComponents.css';
 
 export default function SettingsForm() {
     const { settings, updateSocials, updateBacDate } = useSettings();
+    const { currentLang } = useLanguage();
     const isAr = currentLang.code === 'ar';
+
+    const [socials, setSocials] = useState(settings.socials || { instagram: '', tiktok: '', telegram: '' });
+    const [bacDate, setBacDate] = useState(settings.bacDate || '');
+    const [msg, setMsg] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();

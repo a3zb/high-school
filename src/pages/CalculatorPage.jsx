@@ -42,12 +42,11 @@ export default function CalculatorPage() {
     }, [selectedYearId, selectedStreamId, subjects]);
 
     const handleInputChange = (subId, field, value) => {
-        const numVal = value === '' ? '' : parseFloat(value);
         setGrades(prev => ({
             ...prev,
             [subId]: {
                 ...prev[subId],
-                [field]: numVal
+                [field]: value
             }
         }));
     };
@@ -160,7 +159,7 @@ export default function CalculatorPage() {
                                             <input
                                                 type="number"
                                                 placeholder="---"
-                                                value={grades[sub.id]?.practical === '' ? '' : grades[sub.id]?.practical}
+                                                value={grades[sub.id]?.practical ?? ''}
                                                 onChange={e => handleInputChange(sub.id, 'practical', e.target.value)}
                                             />
                                         </td>

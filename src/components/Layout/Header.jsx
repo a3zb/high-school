@@ -36,7 +36,7 @@ export default function Header({ onToggleSidebar }) {
 
                 <div className="header-actions">
                     <Link to="/login" className="login-link-btn" style={{ marginRight: '10px', textDecoration: 'none', fontWeight: 'bold' }}>
-                        🔑 {currentLang.code === 'ar' ? 'دخول' : 'Login'}
+                        🔑 <span className="login-text">{currentLang.code === 'ar' ? 'دخول' : 'Login'}</span>
                     </Link>
                     <Link to="/analytics" className="user-level-badge" title={currentLang.code === 'ar' ? `اضغط لعرض الإحصائيات - XP: ${stats.xp % 100}/100` : `Click for stats - XP: ${stats.xp % 100}/100`} style={{ textDecoration: 'none' }}>
                         <span className="level-num">Lvl {stats.level}</span>
@@ -44,7 +44,9 @@ export default function Header({ onToggleSidebar }) {
                             <div className="xp-progress" style={{ width: `${stats.xp % 100}%` }}></div>
                         </div>
                     </Link>
-                    <LanguageSwitcher />
+                    <div className="hide-mobile">
+                        <LanguageSwitcher />
+                    </div>
                     <ThemeToggle />
                 </div>
             </div>

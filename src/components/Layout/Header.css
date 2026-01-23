@@ -62,13 +62,45 @@
     gap: 0.5rem;
 }
 
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
 @media (max-width: 480px) {
     .logo-text {
+        font-size: 1rem;
+    }
+    
+    .logo-icon {
         font-size: 1.1rem;
     }
 
-    .login-link-btn span {
+    .header-container {
+        gap: 0.4rem;
+    }
+
+    .login-text {
         display: none;
+    }
+    
+    .site-header {
+        padding: 0.5rem 0;
+    }
+    
+    .user-level-badge {
+        padding: 0.2rem 0.5rem;
+    }
+    
+    .level-num {
+        font-size: 0.75rem;
     }
 }
 

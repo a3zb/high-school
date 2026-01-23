@@ -27,7 +27,6 @@ import LoginPage from './pages/LoginPage';
 import StudyPlannerPage from './pages/StudyPlannerPage';
 import FavoritesPage from './pages/FavoritesPage';
 import AnalyticsPage from './pages/AnalyticsPage';
-import LeaderboardPage from './pages/LeaderboardPage';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { ROLES } from './utils/permissions';
@@ -103,7 +102,6 @@ function App() {
                                                                 <Route path="/planner" element={<StudyPlannerPage />} />
                                                                 <Route path="/favorites" element={<FavoritesPage />} />
                                                                 <Route path="/analytics" element={<AnalyticsPage />} />
-                                                                <Route path="/leaderboard" element={<LeaderboardPage />} />
                                                                 <Route
                                                                     path="/dashboard"
                                                                     element={

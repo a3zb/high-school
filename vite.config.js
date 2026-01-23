@@ -9,20 +9,23 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'BAC 2024 Platform',
-        short_name: 'BAC Platform',
-        description: 'Comprehensive Algerian High School Educational Platform',
-        theme_color: '#10b981',
+        name: 'PathToSuccess - Algerian Secondary Education',
+        short_name: 'PathToSuccess',
+        description: 'Comprehensive Algerian High School Educational Platform for 1AS, 2AS, and 3AS (BAC).',
+        theme_color: '#3b82f6',
+        background_color: '#020617',
         icons: [
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any'
           },
           {
             src: 'pwa-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       }

@@ -249,20 +249,27 @@
     }
 
     .tabs-list {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         border-radius: var(--radius-lg);
         width: 100%;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0.25rem;
-        padding: 0.25rem;
+        padding: 0.5rem;
+        /* Hide scrollbar but keep functionality */
+        scrollbar-width: none;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+        display: none;
     }
 
     .tab-button {
         padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
-        flex: 1;
-        /* Make tabs equal space on mobile */
-        min-width: 110px;
+        white-space: nowrap;
+        flex: 0 0 auto;
         text-align: center;
     }
 
