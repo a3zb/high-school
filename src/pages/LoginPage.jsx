@@ -6,19 +6,40 @@ import './LoginPage.css';
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const { loginWithCode, loginWithCredentials } = useAuth();
+    const { loginWithCode, loginWithCredentials, login, register, loginAsAdmin } = useAuth();
     const { currentLang } = useLanguage();
 
-    const [activeTab, setActiveTab] = useState('teacher'); // teacher | admin
+    const [activeTab, setActiveTab] = useState('student'); // student | teacher | admin
+    const [isRegistering, setIsRegistering] = useState(false);
+    const [studentCreds, setStudentCreds] = useState({ name: '', email: '', password: '' });
+
     const [code, setCode] = useState('');
     const [creds, setCreds] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
 
     const isAr = currentLang.code === 'ar';
 
-    const handleTeacherLogin = (e) => {
+    const handleStudentAuth = async (e) => {
         e.preventDefault();
-        const result = loginWithCode(code);
+        setError('');
+
+        let result;
+        if (isRegistering) {
+            result = await register(studentCreds.email, studentCreds.password, studentCreds.name);
+        } else {
+            result = await login(studentCreds.email, studentCreds.password);
+        }
+
+        if (result.success) {
+            navigate('/');
+        } else {
+            setError(result.error);
+        }
+    };
+
+    const handleTeacherLogin = async (e) => {
+        e.preventDefault();
+        const result = await loginWithCode(code);
         if (result.success) {
             navigate('/dashboard');
         } else {
@@ -26,9 +47,9 @@ export default function LoginPage() {
         }
     };
 
-    const handleAdminLogin = (e) => {
+    const handleAdminLogin = async (e) => {
         e.preventDefault();
-        const result = loginWithCredentials(creds.username, creds.password);
+        const result = await loginAsAdmin(creds.username, creds.password);
         if (result.success) {
             navigate('/dashboard');
         } else {
@@ -43,11 +64,17 @@ export default function LoginPage() {
             <div className="login-card-container glass">
                 <div className="login-card-header">
                     <span className="login-brand-icon">🔑</span>
-                    <h1>{isAr ? 'مرحباً بعودتك' : 'Welcome Back'}</h1>
-                    <p>{isAr ? 'سجل الدخول للوصول إلى لوحة التحكم' : 'Login to access your dashboard'}</p>
+                    <h1>{isAr ? 'مرحباً، تفوق معنا!' : 'Welcome, Excel with us!'}</h1>
+                    <p>{isAr ? 'سجل الدخول لبدء رحلة النجاح' : 'Login to start your success journey'}</p>
                 </div>
 
                 <div className="login-tabs-premium">
+                    <button
+                        className={activeTab === 'student' ? 'active' : ''}
+                        onClick={() => { setActiveTab('student'); setError(''); }}
+                    >
+                        {isAr ? 'طالب' : 'Student'}
+                    </button>
                     <button
                         className={activeTab === 'teacher' ? 'active' : ''}
                         onClick={() => { setActiveTab('teacher'); setError(''); }}
@@ -63,7 +90,79 @@ export default function LoginPage() {
                 </div>
 
                 <div className="login-form-wrapper">
-                    {activeTab === 'teacher' ? (
+                    {activeTab === 'student' ? (
+                        <div className="student-auth-section">
+                            <form onSubmit={handleStudentAuth} className="premium-form">
+                                {isRegistering && (
+                                    <div className="input-field">
+                                        <input
+                                            type="text"
+                                            required
+                                            value={studentCreds.name}
+                                            onChange={e => setStudentCreds({ ...studentCreds, name: e.target.value })}
+                                            placeholder=" "
+                                            id="student-name"
+                                        />
+                                        <label htmlFor="student-name">{isAr ? 'الاسم الكامل' : 'Full Name'}</label>
+                                        <div className="input-focus-line"></div>
+                                    </div>
+                                )}
+                                <div className="input-field">
+                                    <input
+                                        type="email"
+                                        required
+                                        value={studentCreds.email}
+                                        onChange={e => setStudentCreds({ ...studentCreds, email: e.target.value })}
+                                        placeholder=" "
+                                        id="student-email"
+                                    />
+                                    <label htmlFor="student-email">{isAr ? 'البريد الإلكتروني' : 'Email Address'}</label>
+                                    <div className="input-focus-line"></div>
+                                </div>
+                                <div className="input-field">
+                                    <input
+                                        type="password"
+                                        required
+                                        value={studentCreds.password}
+                                        onChange={e => setStudentCreds({ ...studentCreds, password: e.target.value })}
+                                        placeholder=" "
+                                        id="student-pass"
+                                        minLength="6"
+                                    />
+                                    <label htmlFor="student-pass">{isAr ? 'كلمة المرور' : 'Password'}</label>
+                                    <div className="input-focus-line"></div>
+                                </div>
+                                <button type="submit" className="login-submit-btn">
+                                    <span>{isRegistering ? (isAr ? 'إنشاء حساب' : 'Create Account') : (isAr ? 'تسجيل الدخول' : 'Login')}</span>
+                                    <i className="btn-icon">→</i>
+                                </button>
+                            </form>
+
+                            <div className="auth-switch-text" style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
+                                {isRegistering ? (
+                                    <span>
+                                        {isAr ? 'لديك حساب بالفعل؟ ' : 'Already have an account? '}
+                                        <button
+                                            onClick={() => setIsRegistering(false)}
+                                            style={{ background: 'none', border: 'none', color: 'var(--color-primary)', fontWeight: 'bold', cursor: 'pointer', textDecoration: 'underline' }}
+                                        >
+                                            {isAr ? 'سجل دخولك' : 'Login here'}
+                                        </button>
+                                    </span>
+                                ) : (
+                                    <span>
+                                        {isAr ? 'ليس لديك حساب؟ ' : "Don't have an account? "}
+                                        <button
+                                            onClick={() => setIsRegistering(true)}
+                                            style={{ background: 'none', border: 'none', color: 'var(--color-primary)', fontWeight: 'bold', cursor: 'pointer', textDecoration: 'underline' }}
+                                        >
+                                            {isAr ? 'أنشئ حساباً' : 'Register now'}
+                                        </button>
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    ) : activeTab === 'teacher' ? (
                         <form onSubmit={handleTeacherLogin} className="premium-form">
                             <div className="input-field">
                                 <input

@@ -16,6 +16,7 @@ export default function Sidebar({ isOpen, onClose }) {
         { path: '/', label: isAr ? 'الرئيسية' : 'Home', icon: '🏠' },
         { path: '/planner', label: isAr ? 'مخطط الدراسة' : 'Study Planner', icon: '📅' },
         { path: '/favorites', label: isAr ? 'المفضلة' : 'Favorites', icon: '⭐' },
+        { path: '/profile', label: isAr ? 'الملف الشخصي' : 'Profile', icon: '👤' },
         { path: '/calculator', label: isAr ? 'حساب المعدل' : 'Calculator', icon: '🧮' },
         { path: '/analytics', label: isAr ? 'إحصائياتي' : 'Analytics', icon: '📊' },
     ];
@@ -23,6 +24,11 @@ export default function Sidebar({ isOpen, onClose }) {
     // Only show dashboard for teachers and moderators
     if (user && (user.role === ROLES.TEACHER || user.role === ROLES.MODERATOR)) {
         menuItems.push({ path: '/dashboard', label: isAr ? 'لوحة المعلم' : 'Teacher Dashboard', icon: '👨‍🏫' });
+    }
+
+    // Only show Admin Dashboard for moderators/admins
+    if (user && user.role === ROLES.MODERATOR) {
+        menuItems.push({ path: '/admin', label: isAr ? 'لوحة الإدارة' : 'Admin Panel', icon: '⚙️' });
     }
 
     return (

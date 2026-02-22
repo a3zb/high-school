@@ -230,22 +230,35 @@
 }
 
 @media (max-width: 768px) {
+    .subject-page {
+        padding-bottom: 6rem;
+        /* Extra space for bottom sticky bar */
+    }
+
     .subject-header {
         flex-direction: column;
         text-align: center;
-        padding: 1rem;
+        padding: 1.5rem 1rem;
         gap: 1rem;
         margin-bottom: 2rem;
+        border-radius: var(--radius-lg);
     }
 
     .subject-icon-large {
-        width: 70px;
-        height: 70px;
-        font-size: 2.5rem;
+        width: 64px;
+        height: 64px;
+        font-size: 2rem;
+        border-radius: var(--radius-md);
     }
 
     .subject-title-large {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        /* Smaller for mobile to prevent wrapping issues */
+        margin-bottom: 0.25rem;
+    }
+
+    .subject-meta {
+        font-size: 0.8rem;
     }
 
     .tabs-list {
@@ -255,10 +268,12 @@
         border-radius: var(--radius-lg);
         width: 100%;
         justify-content: flex-start;
-        gap: 0.25rem;
+        gap: 0.5rem;
         padding: 0.5rem;
+        margin-bottom: 2rem;
         /* Hide scrollbar but keep functionality */
         scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .tabs-list::-webkit-scrollbar {
@@ -266,24 +281,79 @@
     }
 
     .tab-button {
-        padding: 0.6rem 1.2rem;
+        padding: 0.6rem 1rem;
         font-size: 0.85rem;
         white-space: nowrap;
         flex: 0 0 auto;
         text-align: center;
+        border-radius: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        /* Slight bg to show tap area */
     }
 
+    .tab-button.active {
+        box-shadow: none;
+        /* Perf */
+    }
+
+    .term-title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        padding-inline-start: 0.75rem;
+        border-width: 3px;
+    }
+
+    /* Mobile Card Layout - Optimized for vertical scanning */
     .dz-card-main {
-        flex-direction: column;
+        flex-direction: row;
+        /* Keep icon next to text for compactness */
         align-items: flex-start;
         padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .dz-card-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        font-size: 1.25rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .dz-card-title {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-bottom: 0.25rem;
+    }
+
+    .dz-card-meta {
+        font-size: 0.75rem;
+        gap: 0.75rem;
     }
 
     .dz-card-actions {
         width: 100%;
         justify-content: space-between;
-        margin-top: 0.75rem;
-        padding-top: 0.75rem;
+        margin-top: 0;
+        padding: 0.75rem 1rem;
+        /* Separate action area */
+        background: rgba(0, 0, 0, 0.02);
+        /* Slight separation */
         border-top: 1px solid var(--glass-border);
+    }
+
+    /* Make download button full width for easier tap */
+    .dz-download-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .dz-fav-btn,
+    .dz-comment-btn {
+        width: 42px;
+        /* Larger touch target */
+        height: 42px;
     }
 }

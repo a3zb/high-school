@@ -95,21 +95,6 @@
                                 "en": "Technology"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 },
@@ -192,21 +177,6 @@
                                 "en": "Informatics"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 }
@@ -299,21 +269,6 @@
                                 "en": "Informatics"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 },
@@ -396,21 +351,6 @@
                                 "en": "Informatics"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 },
@@ -493,21 +433,6 @@
                                 "en": "Informatics"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 },
@@ -590,21 +515,6 @@
                                 "en": "Islamic Sciences"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 },
@@ -687,21 +597,6 @@
                                 "en": "Islamic Sciences"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 },
@@ -776,21 +671,6 @@
                                 "en": "Islamic Sciences"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
-                            "id": "amazigh",
-                            "title": {
-                                "ar": "لغة أمازيغية",
-                                "en": "Amazigh Language"
-                            }
                         }
                     ]
                 }
@@ -885,14 +765,6 @@
                             "coefficient": 2
                         },
                         {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
                             "id": "amazigh",
                             "title": {
                                 "ar": "لغة أمازيغية",
@@ -983,14 +855,6 @@
                             "coefficient": 2
                         },
                         {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
                             "id": "amazigh",
                             "title": {
                                 "ar": "لغة أمازيغية",
@@ -1079,14 +943,6 @@
                                 "en": "Philosophy"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
                         },
                         {
                             "id": "amazigh",
@@ -1187,14 +1043,6 @@
                             "coefficient": 2
                         },
                         {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
-                        },
-                        {
                             "id": "amazigh",
                             "title": {
                                 "ar": "لغة أمازيغية",
@@ -1267,14 +1115,6 @@
                                 "en": "Mathematics"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
                         },
                         {
                             "id": "amazigh",
@@ -1365,14 +1205,6 @@
                                 "en": "Mathematics"
                             },
                             "coefficient": 2
-                        },
-                        {
-                            "id": "pe",
-                            "title": {
-                                "ar": "تربية بدنية",
-                                "en": "Sports/PE"
-                            },
-                            "coefficient": 1
                         },
                         {
                             "id": "amazigh",

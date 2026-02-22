@@ -21,13 +21,15 @@ import { AnnouncementProvider } from './context/AnnouncementContext';
 import { UserStatsProvider } from './context/UserStatsContext';
 import { FavoritesProvider } from './context/FavoritesContext';
 import TeacherDashboard from './pages/dashboard/TeacherDashboard';
+import AdminDashboard from './pages/AdminDashboard';
+import ProfilePage from './pages/ProfilePage';
 import CalculatorPage from './pages/CalculatorPage';
 import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
 import StudyPlannerPage from './pages/StudyPlannerPage';
 import FavoritesPage from './pages/FavoritesPage';
 import AnalyticsPage from './pages/AnalyticsPage';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { ROLES } from './utils/permissions';
 import Sidebar from './components/Layout/Sidebar';
@@ -61,15 +63,28 @@ function HomePage() {
 }
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
-    const { user } = useAuth();
-    if (!user || !allowedRoles.includes(user.role)) {
+    const { user, loading } = useAuth();
+
+    if (loading) {
+        return <div className="loading-screen">Starting...</div>;
+    }
+
+    if (!user) {
         return <Navigate to="/login" replace />;
     }
+
+    if (allowedRoles && !allowedRoles.includes(user.role)) {
+        // Redirect to unauthorized or home if role doesn't match
+        return <Navigate to="/" replace />;
+    }
+
     return children;
 };
 
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const location = useLocation();
+    const isLoginPage = location.pathname === '/login';
 
     return (
         <AuthProvider>
@@ -83,25 +98,30 @@ function App() {
                                         <LanguageProvider>
                                             <ThemeProvider>
                                                 <div className="app-wrapper">
-                                                    <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
-                                                    <AnnouncementBar />
+                                                    {!isLoginPage && <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />}
+                                                    {!isLoginPage && <AnnouncementBar />}
                                                     <div className="layout-content-wrapper">
-                                                        <Sidebar
+                                                        {!isLoginPage && <Sidebar
                                                             isOpen={isSidebarOpen}
                                                             onClose={() => setIsSidebarOpen(false)}
-                                                        />
-                                                        <main className="main-content">
+                                                        />}
+                                                        <main className={`main-content ${isLoginPage ? 'login-layout' : ''}`}>
                                                             <Routes>
-                                                                <Route path="/" element={<HomePage />} />
-                                                                <Route path="/year/:yearId" element={<YearPage />} />
-                                                                <Route path="/year/:yearId/stream/:streamId" element={<StreamPage />} />
-                                                                <Route path="/year/:yearId/stream/:streamId/subject/:subjectId" element={<SubjectPage />} />
-                                                                <Route path="/search" element={<SearchResultsPage />} />
-                                                                <Route path="/calculator" element={<CalculatorPage />} />
                                                                 <Route path="/login" element={<LoginPage />} />
-                                                                <Route path="/planner" element={<StudyPlannerPage />} />
-                                                                <Route path="/favorites" element={<FavoritesPage />} />
-                                                                <Route path="/analytics" element={<AnalyticsPage />} />
+
+                                                                {/* Protected Routes */}
+                                                                <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+                                                                <Route path="/year/:yearId" element={<ProtectedRoute><YearPage /></ProtectedRoute>} />
+                                                                <Route path="/year/:yearId/stream/:streamId" element={<ProtectedRoute><StreamPage /></ProtectedRoute>} />
+                                                                <Route path="/year/:yearId/stream/:streamId/subject/:subjectId" element={<ProtectedRoute><SubjectPage /></ProtectedRoute>} />
+                                                                <Route path="/search" element={<ProtectedRoute><SearchResultsPage /></ProtectedRoute>} />
+                                                                <Route path="/calculator" element={<ProtectedRoute><CalculatorPage /></ProtectedRoute>} />
+                                                                <Route path="/planner" element={<ProtectedRoute><StudyPlannerPage /></ProtectedRoute>} />
+                                                                <Route path="/favorites" element={<ProtectedRoute><FavoritesPage /></ProtectedRoute>} />
+                                                                <Route path="/analytics" element={<ProtectedRoute><AnalyticsPage /></ProtectedRoute>} />
+                                                                <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+                                                                <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+
                                                                 <Route
                                                                     path="/dashboard"
                                                                     element={
@@ -110,11 +130,19 @@ function App() {
                                                                         </ProtectedRoute>
                                                                     }
                                                                 />
+                                                                <Route
+                                                                    path="/admin"
+                                                                    element={
+                                                                        <ProtectedRoute allowedRoles={[ROLES.MODERATOR]}>
+                                                                            <AdminDashboard />
+                                                                        </ProtectedRoute>
+                                                                    }
+                                                                />
                                                             </Routes>
-                                                            <StickyBacCountdown />
+                                                            {!isLoginPage && <StickyBacCountdown />}
                                                         </main>
                                                     </div>
-                                                    <Footer />
+                                                    {!isLoginPage && <Footer />}
                                                 </div>
                                             </ThemeProvider>
                                         </LanguageProvider>

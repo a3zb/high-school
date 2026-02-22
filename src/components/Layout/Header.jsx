@@ -21,7 +21,7 @@ export default function Header({ onToggleSidebar }) {
                     </button>
                     <Link to="/" className="logo">
                         <span className="logo-icon">🚀</span>
-                        <span className="logo-text">PathToSuccess</span>
+                        <span className="logo-text">BAC Success</span>
                     </Link>
                 </div>
 
