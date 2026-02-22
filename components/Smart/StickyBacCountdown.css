@@ -1,0 +1,163 @@
+.sticky-bac-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-top: 1px solid var(--glass-border);
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.sticky-bac-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.sticky-bac-wrapper .bac-countdown {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.sticky-bac-wrapper .bac-countdown h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+}
+
+.sticky-bac-wrapper .countdown-timer {
+    gap: 1rem;
+}
+
+.sticky-bac-wrapper .time-unit {
+    min-width: 60px;
+    padding: 0.4rem;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sticky-bac-wrapper .time-unit .number {
+    font-size: 1.2rem;
+}
+
+.sticky-calc-btn {
+    background: var(--color-secondary);
+    color: white !important;
+    padding: 0.6rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 800;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.sticky-bac-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bac-badge {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.sticky-calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Hide Seconds on mobile if needed or keep it clean */
+@media (max-width: 900px) {
+    .sticky-bac-content {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+/* Hover effect to reveal more / glow */
+.sticky-bac-wrapper:hover {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .sticky-bac-wrapper {
+        padding: 0.4rem 0.75rem;
+    }
+
+    .sticky-bac-content {
+        gap: 0.4rem;
+    }
+
+    .sticky-bac-wrapper .bac-countdown {
+        flex-direction: row;
+        gap: 0.25rem;
+    }
+
+    .sticky-bac-wrapper .countdown-timer {
+        gap: 0.5rem;
+    }
+
+    .sticky-bac-wrapper .bac-countdown h4 {
+        display: none;
+    }
+
+    .sticky-bac-wrapper .time-unit {
+        min-width: 42px;
+        padding: 0.2rem;
+        border-radius: 0.4rem;
+    }
+
+    .sticky-bac-wrapper .time-unit .number {
+        font-size: 0.9rem;
+    }
+
+    .sticky-bac-wrapper .time-unit .label {
+        font-size: 0.6rem;
+    }
+
+    .sticky-calc-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .bac-badge {
+        display: none;
+    }
+}

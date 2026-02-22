@@ -1,0 +1,39 @@
+.announcement-bar {
+    width: 100%;
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.announcement-bar.type-info {
+    background-color: rgba(59, 130, 246, 0.85);
+    color: white;
+}
+
+.announcement-bar.type-warning {
+    background-color: rgba(245, 158, 11, 0.85);
+    color: #fff;
+}
+
+.announcement-bar.type-success {
+    background-color: rgba(16, 185, 129, 0.85);
+    color: white;
+}
+
+.announcement-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.announcement-icon {
+    font-size: 1.1rem;
+}
+
+/* Optional animation for text change could be added here */
