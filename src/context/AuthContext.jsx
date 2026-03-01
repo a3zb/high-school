@@ -43,7 +43,13 @@ export const AuthProvider = ({ children }) => {
             clearTimeout(timeoutId);
             if (!mounted) return;
 
-            if (firebaseUser) {
+            if (configError) {
+                // If config missing, check LocalStorage for a simulated session
+                const savedUser = localStorage.getItem('local_user_session');
+                if (savedUser) {
+                    setUser(JSON.parse(savedUser));
+                }
+            } else if (firebaseUser) {
                 try {
                     // Fetch User Role from Firestore
                     const userDocRef = doc(db, 'users', firebaseUser.uid);
@@ -146,17 +152,23 @@ export const AuthProvider = ({ children }) => {
             return { success: false, error: 'Invalid Activation Code' };
         }
 
+        if (configError) {
+            // Local Login simulation
+            const localUser = {
+                uid: `local-${Date.now()}`,
+                role: validation.role,
+                allowedSubjects: validation.allowedSubjects || [],
+                name: validation.role === 'moderator' ? 'Admin' : 'Teacher',
+                isLocalSession: true
+            };
+            setUser(localUser);
+            localStorage.setItem('local_user_session', JSON.stringify(localUser));
+            return { success: true };
+        }
+
         try {
             // Sign in anonymously first to get a uid
             const { user: firebaseUser } = await signInAnonymously(auth);
-
-            // We don't save this role to DB for anonymous users usually, 
-            // but we set it in local state to allow access for this session.
-            // OR we updates the user doc if we want persistence.
-            // For now, let's update local state override in the onAuthStateChanged or just here?
-            // onAuthStateChanged will trigger and overwrite 'user'.
-            // So we need to persist this role to Firestore for this anonymous user?
-            // Yes, let's set the role for this anonymous user in Firestore so it persists on reload.
 
             await setDoc(doc(db, 'users', firebaseUser.uid), {
                 role: validation.role,
@@ -179,6 +191,19 @@ export const AuthProvider = ({ children }) => {
         const ADMIN_PASSWORD = 'admin123';
 
         if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            if (configError) {
+                const localAdmin = {
+                    uid: 'local-admin',
+                    role: ROLES.MODERATOR,
+                    name: 'Admin',
+                    email: 'admin@local',
+                    isLocalSession: true
+                };
+                setUser(localAdmin);
+                localStorage.setItem('local_user_session', JSON.stringify(localAdmin));
+                return { success: true };
+            }
+
             try {
                 // Sign in anonymously first to get a uid
                 const { user: firebaseUser } = await signInAnonymously(auth);
@@ -204,7 +229,12 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await signOut(auth);
+            if (configError) {
+                setUser(null);
+                localStorage.removeItem('local_user_session');
+            } else {
+                await signOut(auth);
+            }
         } catch (error) {
             console.error("Logout Error:", error);
         }

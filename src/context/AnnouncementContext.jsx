@@ -3,15 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const AnnouncementContext = createContext();
 
 export const AnnouncementProvider = ({ children }) => {
-    const [announcements, setAnnouncements] = useState([
-        {
-            id: 'welcome-msg',
-            text: { ar: 'مرحباً بكم في منصة البكالوريا 2024! نتمنى لكم عاماً دراسياً موفقاً.', en: 'Welcome to BAC 2024 Platform! We wish you a successful academic year.' },
-            type: 'info', // info, warning, success
-            active: true,
-            date: new Date().toISOString()
-        }
-    ]);
+    const [announcements, setAnnouncements] = useState([]);
 
     // Optimize: Load from LocalStorage if we want persistence across reloads for Admin changes
     useEffect(() => {

@@ -1,11 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         react(),
+        /*
         VitePWA({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
@@ -28,10 +34,11 @@ export default defineConfig({
                 ]
             }
         })
+        */
     ],
     resolve: {
         alias: {
-            '@': '/src',
+            '@': path.resolve(__dirname, './src'),
         },
     },
 })

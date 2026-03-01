@@ -54,12 +54,6 @@
                 "english"
             ]
         },
-        "amazigh-prof-2025": {
-            "role": "teacher",
-            "subjectIds": [
-                "amazigh"
-            ]
-        },
         "tech-prof-2025": {
             "role": "teacher",
             "subjectIds": [

@@ -49,25 +49,60 @@ export default function TeacherDashboard() {
         canEditContent(user, sub.id)
     ) || [];
 
-    const handleUpload = (e) => {
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            setSelectedFile(e.target.files[0]);
+        }
+    };
+
+    const handleUpload = async (e) => {
         e.preventDefault();
+
         if (!formData.title || !formData.subjectId || !formData.yearId) {
-            setMessage('Please fill all fields');
+            setMessage(isAr ? 'يرجى ملء جميع الحقول' : 'Please fill all fields');
             return;
         }
 
-        addFile({
-            ...formData,
-            uploaderId: user.id,
-            url: '#' // Mock URL
-        });
+        if (!selectedFile) {
+            setMessage(isAr ? 'يرجى اختيار ملف PDF أولاً' : 'Please select a PDF file first');
+            return;
+        }
 
-        setMessage('File uploaded successfully!');
-        setFormData(prev => ({ ...prev, title: '' })); // Reset title only
-        setTimeout(() => setMessage(''), 3000);
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+            const base64File = event.target.result;
+
+            try {
+                await addFile({
+                    ...formData,
+                    uploaderId: user.uid || user.id,
+                    uploaderName: user.name || (isAr ? "أستاذ المنصة" : "Platform Teacher"),
+                    url: base64File, // Store the actual file data
+                    fileName: selectedFile.name,
+                    size: (selectedFile.size / 1024).toFixed(1) + ' KB'
+                });
+
+                setMessage(isAr ? 'تم رفع الملف بنجاح!' : 'File uploaded successfully!');
+                setFormData(prev => ({ ...prev, title: '' }));
+                setSelectedFile(null);
+                document.getElementById('pdf-input').value = '';
+                setTimeout(() => setMessage(''), 3000);
+            } catch (error) {
+                console.error("Upload error:", error);
+                setMessage(isAr ? 'فشل الرفع، يرجى المحاولة لاحقاً' : 'Upload failed, please try again');
+            }
+        };
+
+        reader.onerror = () => {
+            setMessage(isAr ? 'خطأ في قراءة الملف' : 'Error reading file');
+        };
+
+        reader.readAsDataURL(selectedFile);
     };
 
-    const myFiles = getFilesByUploader(user.id);
+    const myFiles = getFilesByUploader(user.uid || user.id);
     const totalAnnouncements = announcements.length;
     const isAr = currentLang.code === 'ar';
 
@@ -204,10 +239,20 @@ export default function TeacherDashboard() {
                                 </div>
 
                                 <div className="file-upload-zone glass">
-                                    <input type="file" accept=".pdf" id="pdf-input" className="hidden-file-input" />
+                                    <input
+                                        type="file"
+                                        accept=".pdf"
+                                        id="pdf-input"
+                                        className="hidden-file-input"
+                                        onChange={handleFileChange}
+                                    />
                                     <label htmlFor="pdf-input" className="file-label-premium">
-                                        <span className="upload-big-icon">📄</span>
-                                        <span>{isAr ? 'انقر أو اسحب ملف PDF هنا' : 'Click or drag PDF file here'}</span>
+                                        <span className="upload-big-icon">{selectedFile ? '✅' : '📄'}</span>
+                                        <span>
+                                            {selectedFile
+                                                ? selectedFile.name
+                                                : (isAr ? 'انقر أو اسحب ملف PDF هنا' : 'Click or drag PDF file here')}
+                                        </span>
                                     </label>
                                 </div>
 

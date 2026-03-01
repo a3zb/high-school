@@ -20,15 +20,19 @@ export default function Header({ onToggleSidebar }) {
                         <span className="hamburger-line"></span>
                     </button>
                     <Link to="/" className="logo">
-                        <span className="logo-icon">🚀</span>
-                        <span className="logo-text">BAC Success</span>
+                        <span className="logo-icon">💠</span>
+                        <span className="logo-text">{currentLang.code === 'ar' ? 'أثــر التعليمية' : 'Athar Educational'}</span>
                     </Link>
                 </div>
 
                 <nav className="main-nav">
                     <ul className="nav-list">
-                        <li><Link to="/" className="nav-link">{currentLang.code === 'ar' ? 'الرئيسية' : 'Home'}</Link></li>
-                        <li><Link to="/about" className="nav-link">{currentLang.code === 'ar' ? 'عن المنصة' : 'About'}</Link></li>
+                        <li><Link to="/" className="nav-link">
+                            {currentLang.code === 'ar' ? 'الرئيسية' : currentLang.code === 'fr' ? 'Accueil' : 'Home'}
+                        </Link></li>
+                        <li><Link to="/about" className="nav-link">
+                            {currentLang.code === 'ar' ? 'عن المنصة' : currentLang.code === 'fr' ? 'À propos' : 'About'}
+                        </Link></li>
                     </ul>
                 </nav>
 
@@ -36,7 +40,9 @@ export default function Header({ onToggleSidebar }) {
 
                 <div className="header-actions">
                     <Link to="/login" className="login-link-btn" style={{ marginRight: '10px', textDecoration: 'none', fontWeight: 'bold' }}>
-                        🔑 <span className="login-text">{currentLang.code === 'ar' ? 'دخول' : 'Login'}</span>
+                        🔑 <span className="login-text">
+                            {currentLang.code === 'ar' ? 'دخول' : currentLang.code === 'fr' ? 'Connexion' : 'Login'}
+                        </span>
                     </Link>
                     <Link to="/analytics" className="user-level-badge" title={currentLang.code === 'ar' ? `اضغط لعرض الإحصائيات - XP: ${stats.xp % 100}/100` : `Click for stats - XP: ${stats.xp % 100}/100`} style={{ textDecoration: 'none' }}>
                         <span className="level-num">Lvl {stats.level}</span>

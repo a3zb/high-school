@@ -3,30 +3,36 @@ import './AboutPage.css';
 
 export default function AboutPage() {
     const { currentLang } = useLanguage();
-    const isAr = currentLang.code === 'ar';
+    const lang = currentLang.code;
+
+    const t = (ar, fr, en) => {
+        if (lang === 'ar') return ar;
+        if (lang === 'fr') return fr;
+        return en;
+    };
 
     const features = [
         {
-            title: isAr ? 'محتوى شامل' : 'Comprehensive Content',
-            desc: isAr ? 'آلاف الدروس والملخصات المنظمة حسب المنهاج الوزاري.' : 'Thousands of lessons and summaries organized by ministerial curriculum.',
+            title: t('محتوى شامل', 'Contenu Exhaustif', 'Comprehensive Content'),
+            desc: t('آلاف الدروس والملخصات المنظمة حسب المنهاج الوزاري.', 'Des milliers de cours et résumés organisés selon le programme ministériel.', 'Thousands of lessons and summaries organized by ministerial curriculum.'),
             icon: '📚',
             color: '#3b82f6'
         },
         {
-            title: isAr ? 'اختبارات تفاعلية' : 'Interactive Quizzes',
-            desc: isAr ? 'قيم مستواك فوراً مع نظام اختبارات ذكي وتصحيح تلقائي.' : 'Assess your level immediately with a smart quiz system and auto-grading.',
+            title: t('اختبارات تفاعلية', 'Quiz Interactifs', 'Interactive Quizzes'),
+            desc: t('قيم مستواك فوراً مع نظام اختبارات ذكي وتصحيح تلقائي.', 'Évaluez votre niveau immédiatement avec un système de quiz intelligent.', 'Assess your level immediately with a smart quiz system and auto-grading.'),
             icon: '📝',
             color: '#10b981'
         },
         {
-            title: isAr ? 'نظام التحفيز' : 'Gamification System',
-            desc: isAr ? 'احصل على XP وارفع مستواك مع كل درس تدرسه أو اختبار تخوضه.' : 'Get XP and level up with every lesson you study or quiz you take.',
+            title: t('نظام التحفيز', 'Système de Motivation', 'Gamification System'),
+            desc: t('احصل على XP وارفع مستواك مع كل درس تدرسه أو اختبار تخوضه.', 'Gagnez des XP et montez en niveau avec chaque leçon ou quiz.', 'Get XP and level up with every lesson you study or quiz you take.'),
             icon: '🏆',
             color: '#f59e0b'
         },
         {
-            title: isAr ? 'مخطط الدراسة' : 'Study Planner',
-            desc: isAr ? 'نظم وقتك وحدد أولوياتك لتصل إلى أهدافك الدراسية.' : 'Organize your time and set your priorities to reach your study goals.',
+            title: t('مخطط الدراسة', 'Planificateur d\'Études', 'Study Planner'),
+            desc: t('نظم وقتك وحدد أولوياتك لتصل إلى أهدافك الدراسية.', 'Organisez votre temps et fixez vos priorités pour réussir.', 'Organize your time and set your priorities to reach your study goals.'),
             icon: '📅',
             color: '#8b5cf6'
         }
@@ -37,10 +43,10 @@ export default function AboutPage() {
             <header className="about-hero">
                 <div className="container">
                     <h1 className="about-title glass-text">
-                        {isAr ? 'عن منصة نجاح' : 'About Success Platform'}
+                        {t('عن منصة أثــر', 'À propos d\'Athar', 'About Athar Platform')}
                     </h1>
                     <p className="about-subtitle">
-                        {isAr ? 'رفيقك الدائم في رحلة التفوق والنجاح الدراسي' : 'Your constant companion on the journey of excellence and academic success'}
+                        {t('رفيقك الدائم في رحلة التفوق والنجاح الدراسي', 'Votre compagnon constant dans le voyage de l\'excellence académique', 'Your constant companion on the journey of academic excellence')}
                     </p>
                 </div>
             </header>
@@ -48,16 +54,31 @@ export default function AboutPage() {
             <section className="about-content container">
                 <div className="about-grid">
                     <div className="main-info-card glass-card">
-                        <h2>{isAr ? 'رسالتنا' : 'Our Mission'}</h2>
+                        <h2>{t('رسالتنا', 'Notre Mission', 'Our Mission')}</h2>
                         <p>
-                            {isAr
-                                ? 'نهدف إلى تبسيط العملية التعليمية وتوفير موارد عالية الجودة لكل طالب جزائري، من خلال تجربة رقمية فريدة ومحفزة تساعدك على تحقيق أفضل النتائج في البكالوريا وما قبلها.'
-                                : 'We aim to simplify the educational process and provide high-quality resources to every Algerian student, through a unique and stimulating digital experience that helps you achieve the best results in the Baccalaureate and beyond.'}
+                            {t(
+                                'هذه المنصة هي جهد متواضع وعمل أُسس "في سبيل الله" لتعم الفائدة ويجد كل طالب جزائري ما يحتاجه للتفوق مجاناً وبأعلى جودة ممكنة.',
+                                'Cette plateforme est un effort humble établi "pour l\'amour d\'Allah" afin que chaque étudiant algérien trouve gratuitement ce dont il a besoin pour exceller.',
+                                'This platform is a humble effort established "for the sake of Allah" so that every Algerian student finds what they need for excellence for free.'
+                            )}
                         </p>
                     </div>
 
+                    <div className="special-link-card glass-card">
+                        <div className="special-link-content">
+                            <span className="special-icon">✨</span>
+                            <div className="text">
+                                <h3>{t('موقع أثــر الديني', 'Plateforme Religieuse Athar', 'Athar Religious Platform')}</h3>
+                                <p>{t('نُـورٌ يَهـدِي وأثَـرٌ يَبقَـى.', 'Une lumière qui guide et une trace qui reste.', 'A light that guides and a trace that remains.')}</p>
+                            </div>
+                            <a href="https://athar-tau.vercel.app/" target="_blank" rel="noopener noreferrer" className="visit-btn">
+                                {t('زيارة الموقع', 'Visiter le site', 'Visit Website')}
+                            </a>
+                        </div>
+                    </div>
+
                     <div className="features-section">
-                        <h2>{isAr ? 'ماذا نقدم؟' : 'What We Offer?'}</h2>
+                        <h2>{t('ماذا نقدم؟', 'Ce que nous offrons', 'What We Offer?')}</h2>
                         <div className="features-grid">
                             {features.map((f, i) => (
                                 <div key={i} className="feature-card-premium glass-card" style={{ '--accent-color': f.color }}>

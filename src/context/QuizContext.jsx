@@ -4,29 +4,7 @@ const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
     // Mock Quizzes: { id, title, subjectId, yearId, streamId, questions: [{ id, text, options: [], correctOptionIndex }] }
-    const [quizzes, setQuizzes] = useState([
-        {
-            id: "q1",
-            title: "Math Fundamentals Quiz",
-            subjectId: "math",
-            yearId: "3as",
-            streamId: "science",
-            questions: [
-                {
-                    id: "q1_1",
-                    text: "What is the derivative of x^2?",
-                    options: ["x", "2x", "x^2", "0"],
-                    correctOptionIndex: 1
-                },
-                {
-                    id: "q1_2",
-                    text: "Is Pi a rational number?",
-                    options: ["True", "False"],
-                    correctOptionIndex: 1
-                }
-            ]
-        }
-    ]);
+    const [quizzes, setQuizzes] = useState([]);
 
     // Results: { studentId, quizId, score, answers: { questionId: selectedIndex } }
     const [results, setResults] = useState([]);

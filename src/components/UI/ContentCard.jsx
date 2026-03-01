@@ -36,7 +36,14 @@ export default function ContentCard({ file, subjectId, lang }) {
                     >
                         {isFavorite(file.id) ? '⭐' : '☆'}
                     </button>
-                    <a href={file.url} className="dz-download-btn" title="Download">
+                    <a
+                        href={file.url}
+                        className="dz-download-btn"
+                        title="Download"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download={`${file.title}.pdf`}
+                    >
                         <span className="btn-text">{lang === 'ar' ? 'تحميل' : 'Download'}</span>
                         <span className="btn-icon">⬇</span>
                     </a>
